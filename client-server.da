@@ -15,86 +15,92 @@ def setup_logfile(filename):
         rootlog._filelvl = filelvl
 
 class Master(process):
-    def setup(master):
+    def setup(chainList):
         self.q = set()
-        self.servList = []
-        self.myself = master
+        self.servList = chainList
+        #self.myself = master
         self.removeIndex = []
         self.clientList = []
-        self.tail = None
-        self.head = None
+        self.tail = chainList[len(chainList)-1]
+   
    
     def notify():
       
       while True:
-        if (await(False)):pass
+        
+        if (await(False)):
+          pass
         elif timeout(5*TIMEOUT):
-          #output("stop...........reqc: "+str(reqc)+ "\n")
-          #reqc = 0
-          #servList = servList.strip("||")
-          #servList = servList.split("||")
-          #servList = [elem.strip().split('||') for elem in servList]
+          
           if not servList:
             break
-          head = servList[0]
-          tail = servList[len(servList)-1]
-          
+          serverCrash = False
+         
           for i,server in enumerate(servList):   
-            
             if((0,server) in q):
               q.remove((0,server))
-              #output("\nafter removal queue: "+ str(q))
             else:
-              #output("\n\n\t server not found in queue server-down notify all\n\n"+ str(server))
-              #removeFlag = True
-              removeIndex.append(i)
-              if len(servList) <=1:
-                output("Error all servers failed...")
-                break
-              #else:
-                #output(servList)
-              if(server == head):
-                send(('Reply',servList[i],None,servList[i+1]), to=servList)
-                send(('head',server), to=clientList)
-              elif (server == tail):
-                send(('Reply',servList[i],servList[i-1],None), to=servList)
-                send(('tail',server), to=clientList)
-              else:
-                send(('Reply',servList[i],servList[i-1],servList[i+1]), to=servList)
-          #list(enumerate(removeIndex))
-          for index in sorted(removeIndex, reverse=True):
-            #output("index: "+str(servList[index]))
-            del servList[index]
-          del removeIndex[:]
+              removeIndex.append(server)
+              serverCrash = True
+              
+          if (serverCrash):
+            for value in removeIndex:
+                servList.remove(value)
 
+            chainLength = len(servList)
+            head = servList[0]
+            self.tail = servList[chainLength - 1]
+
+            for i,server in enumerate(servList):            
+              output("STOP under TESTING")
+              
+              
+              if(server == head):
+                prev = None
+                next = servList[i+1]
+                role = 'head'
+                send(('Update',None,next,role), to=server)
+                send((role,server), to=clientList)
+              elif (server == tail):
+                prev = servList[i-1]
+                next = None
+                role = 'tail'
+                send(('Update',prev,None,role), to=server)
+                send((role,server), to=clientList)
+              else:
+                prev = servList[i-1]
+                next = servList[i+1]
+                role = 'replica'+str(i)
+                send(('Update',prev,next,role), to=server)
+
+              output("\n\tSending req. to update buffer\n")
+              send(('Update Buffer'), to=head)
             
+            del removeIndex[:]
+
+
+   
+
           
     # Add in queue for all server pings- "I am Alive"
-    def receive(msg=('Request', timestamp), from_=server):
+    def receive(msg=('I am alive'), from_=server):
         #output("\n\n\tcurrent Receive capacity:" + str(timestamp) + ",of server: " +str(server)+"\n")
-        q.add((0,server));
+        q.add((0,server))
 
     def receive(msg=('Client init'), from_=client):
         clientList.append(client)
         #output("Master: init msg received from client: "+str(client))
 
-    def receive(msg=('Server init'), from_=server):
-        #output("Master: init msg received from server: "+str(server))
-        servList.append(server)
-        #output("my id master:"+str(self.id))
-
     def receive(msg=('chainExtention'), from_=newTail):
-        #output("chain Extension msg received from server new"+str(newTail))
+        output("chain Extension msg received from server new"+str(newTail))
         role = 'replica'+str(len(servList)-1)
         send(('chainUpdate',role,newTail), to=tail)
         
     def receive(msg=('newTail'),from_=newTail):
-        #output("chain Extension completes,new tail added:"+str(newTail))
+        output("chain Extension completes,new tail added:"+str(newTail))
         servList.append(newTail) 
         tail = newTail
         send(('tail',newTail), to=clientList)
-
-
         
     
     def main():
@@ -121,7 +127,7 @@ class Server(process):
         self.maxReceive = maxReceive
         self.maxSend = maxSend
         self.startDelay = startDelay
-        self.role = role
+        self.role = str(role)
         self.master = master
         self.crash = False
         self.prev = prev
@@ -137,69 +143,60 @@ class Server(process):
 
     def main():   
         
-        sleep = True
-        while(sleep):
+        while(startDelay):
           if await(False):
             pass
           elif timeout(startDelay):
-            sleep = False          
-            if startDelay == 0:
-              send(('Server init'), to=master)
-            else:
-              send(('chainExtention'), to=master)
-              #role = 'tail'
+            startDelay = 0
+            send(('chainExtention'), to=master)
                       
         while (crash == False):
           #output("inside main, server: "+ str(role) +str(crash))
           if(receiveCount >= maxReceive or sendCount >= maxSend):
-            crash = True;
-          
+            crash = True        
           if(await(False)):
             pass
           elif timeout(TIMEOUT):
-            capacity = maxReceive -receiveCount
-            send(('Request', str(capacity)), to=master)
-        #output("Killing server: with crash value" + str(crash))
+            #capacity = maxReceive -receiveCount
+            send(('I am alive'), to=master)
+            
+        output("Killing server: with crash value" + str(crash))
         await(crash)
 
-    def receive(msg=('Reply',failedServ, prevServ, nextServ), from_=master):
-        #output("\n\treply from MASter \n\n" +str(master))
-        if(failedServ == next):
-          #output("updating my next server, failed servaer is :" + str(failedServ))
-          next = nextServ
-          if(nextServ == None):
-            role = 'tail'
-          else:
-            #sync buffer with next process
-            sync_next()
+    def receive(msg=('Update Buffer'), from_=master):
+        #todo imp update history
+        #sync_next()
 
-        elif(failedServ == prev):
-          #output("updating my prev server, failed.server is:" + str(failedServ))
-          prev = prevServ
-          if(prevServ == None):
-            role = 'head'
+
+    def receive(msg=('Update',prevServ, nextServ,role), from_=master):
+        #output("\n\treply from MASter \n\n" +str(master))
+       
+        #output("updating my next server, failed servaer is :" + str(failedServ))
+        next = nextServ
+        prev = prevServ
+        self.role = str(role)
+          
    
     def receive(msg=('chainUpdate',newRole,newTail), from_=master):
         #safe check
         #output("updaing my role from tail to:" + str(newRole))
         role = newRole
         next = newTail
-        send(('setup',processedTransactions,processedRequestIDs),to=newTail)
-        #todo imp update history
-        
-        #sync_next()
+        send(('setup',processedTransactions,processedRequestIDs,accountSummary),to=newTail)
+     
 
-    def receive(msg=('setup',processedTransactions,processedRequestIDs),from_=prevTail):
+    def receive(msg=('setup',processedTransactions,processedRequestIDs,accountSummary),from_=prevTail):
         #output("i am new tail,informing master")
         role = 'tail'
         next = None
         prev = prevTail
         self.processedTransactions = processedTransactions
         self.processedRequestIDs = processedRequestIDs
+        self.accountSummary = accountSummary
         send(('newTail'),to=master)
         print ("\n\tHistory Buffer at Tail:")
         for k,v in processedTransactions.items():
-          print ("\n\t"+str(k)+": "+str(v))
+          print (str(k)+": "+str(v))
         #print("\n")
         #for k in processedRequestIDs:
           #print("\n\tprocessedRequestIDs:"+str(k))
@@ -207,8 +204,10 @@ class Server(process):
     def sync_next():
         output("\n inside sync_next: \n")
         send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=next) 
-        sendCount +=1
+        #sendCount +=1
     
+    #///////////////////////////////////////////////////////QUERY HANDLING FROM CLIENT////////////////////////////////////////////////////////////////////////
+
     def receive(msg=('GetBalance', clientId, bankName, clientNumber, sequenceNumber, accountNumber), from_=client):
         #output("\nreq. received for getbalance,my role: "+str(role))
         #output(str(role))
@@ -223,10 +222,9 @@ class Server(process):
           self.receiveCount +=1
           self.reqType = 'GetBalance'
           
-          #if(role == 'head'):
           #output("\role: "+str(role)+",receive: "+str(maxReceive))
           if(sendCount >= maxSend or receiveCount >= maxReceive):
-            crash = True;
+            crash = True
             if(sendCount >= maxReceive):
               output("\n\tGet balance:server crashed just after sending total req no:" + str(sendCount))
             else:
@@ -270,7 +268,7 @@ class Server(process):
         self.receiveCount +=1
         #output("\n\tcurrent receiveCount:" + str(receiveCount))
         if(sendCount >= maxSend or receiveCount >= maxReceive):
-            crash = True;
+            crash = True
             if(sendCount >= maxSend):
               output("\n\tDeposit: server crashed just after sending req. no:" + str(sendCount))                
             else:
@@ -298,7 +296,8 @@ class Server(process):
                 output("deposit to existing accno")
              else:
                 self.balance = 0.0
-             self.balance = balance + int(amount)
+             
+             self.balance = self.balance + int(amount)
              accountSummary[int(accountNumber)] = self.balance
              processedTransactions[transaction] = 'Processed' + "|" + str(self.balance)
              processedRequestIDs.append(reqID)
@@ -312,6 +311,9 @@ class Server(process):
              #output("Deposit sent to next server from: " + role)
              send(('Deposit', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=next) 
           sendCount +=1
+          if(sendCount >= maxSend):
+            crash = True
+            output("\n\tWithdraw:server crashed just after sending req. no:" + str(sendCount))
                 
     def receive(msg=('Withdraw', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount), from_=client):
         
@@ -327,13 +329,13 @@ class Server(process):
         #crash if exceeds
         #output("\n\tcurrent receiveCount:" + str(receiveCount))
         if(sendCount >= maxSend or receiveCount >= maxReceive):
-            crash = True;
-            if(sendCount >= maxReceive):
+            crash = True
+            if(sendCount >= maxSend):
                 output("\n\tWithdraw:server crashed just after sending req. no:" + str(sendCount))
             else:
               output("\n\tWithdraw:server crashed after receiving req. no:" + str(receiveCount))                
         else:
-          self.receiveCount +=1
+          
           transaction = 'Withdraw' + str(clientId)+bankName + str(clientNumber) + str(sequenceNumber) + str(accountNumber) + str(amount)
           reqID = str(clientNumber) + str(sequenceNumber) +str(accountNumber)
           #If the same transaction has already been processed, return the same reply
@@ -376,6 +378,9 @@ class Server(process):
              #output("Withdraw request sent to next server from: " + role)
              send(('Withdraw', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=next)         
           sendCount +=1
+          if(sendCount >= maxSend):
+            crash = True
+            output("\n\tWithdraw:server crashed just after sending req. no:" + str(sendCount))
       
 class Client(process):
     def setup(head,tail,requestList,master):
@@ -440,13 +445,12 @@ class Client(process):
 def main():
 
   parser = configparser.ConfigParser()
-  parser.read('config.ini')
+  parser.read('config1.ini')
   #Config.read("c:\\tomorrow.ini")
   bankCount = int(parser.get('config_test', 'numBank'))
   #Master Process setup and creation
   master = new(Master, num= 1)
-  setup(master,(master))
-  start(master)  
+    
 
   for t in range(1,bankCount+1):
     bankname = parser.get('config_test', 'bank' + str(t))
@@ -467,7 +471,11 @@ def main():
     
     tail = servers[initChain-1]
     head = servers[0]
-    
+    chainList = []
+    chainList = servers[0:initChain]
+    #send(('Chain init',chainList), to=master)
+    setup(master,[chainList])
+    start(master)
     for serverNum, p in enumerate(servers):
       
       bankserverLimit = parser.get('config_test', 'bank' + str(t) + 'server' + str(serverNum+1))
@@ -488,7 +496,7 @@ def main():
         elif operation == 'startDelay':
           startDelay = int(limitType[1])
       #print(str(initChain))
-
+ 
       if serverNum == (initChain-1):
         setup(p, ['tail',servers[serverNum - 1],None,maxReceive,maxSend,startDelay,master])    
       
