@@ -4,7 +4,7 @@ import logging
 import random
 #import set
 #import time
-import re
+#import re
 TIMEOUT = 1
 def setup_logfile(filename):
         rootlog = logging.getLogger('')
@@ -23,7 +23,9 @@ class Master(process):
         self.removeIndex = []
         self.clientList = []
         self.tail = chainList[len(chainList)-1]
-   
+        self.crashTail = tail
+        self.newTail = tail
+        self.flag = 1
    
     def notify():
       
@@ -36,7 +38,8 @@ class Master(process):
           if not servList:
             break
           serverCrash = False
-         
+          tail = servList[len(servList) - 1]
+
           for i,server in enumerate(servList):   
             if((0,server) in q):
               q.remove((0,server))
@@ -52,12 +55,10 @@ class Master(process):
             chainLength = len(servList)
             head = servList[0]
             self.tail = servList[chainLength - 1]
-            output("length:"+str(chainLength)+" tail: "+str(tail))
             if chainLength >1:
               for i,server in enumerate(servList):            
                 #output("STOP under TESTING")
-                
-                
+                                
                 if(server == head):
                   prev = None
                   next = servList[i+1]
@@ -87,6 +88,13 @@ class Master(process):
     def receive(msg=('I am alive'), from_=server):
         output("\n\tI am alive-server: " +str(server)+"\n")
         q.add((0,server))
+        if(crashTail != tail):
+          if(flag ==0):
+            output("removed crash tail,now temp tail: "+str(tail))
+            role = 'replica'+str(len(servList)-1)
+            send(('chainUpdate',role,newTail), to=tail)
+            flag = 1
+        
 
     def receive(msg=('Client init'), from_=client):
         clientList.append(client)
@@ -95,14 +103,40 @@ class Master(process):
     def receive(msg=('chainExtention'), from_=newTail):
         output("chain Extension msg received from server new"+str(newTail))
         role = 'replica'+str(len(servList)-1)
+        output("current tail"+str(tail))
+        crashTail = tail
+        self.newTail = newTail
+        flag =0
+        #if await(False):pass
+        #elif timeout(6*TIMEOUT):
+        #if(crashTail != tail):
         send(('chainUpdate',role,newTail), to=tail)
         
     def receive(msg=('newTail'),from_=newTail):
         output("chain Extension completes,new tail added:"+str(newTail))
         servList.append(newTail) 
         tail = newTail
+        crashTail = tail
         send(('tail',newTail), to=clientList)
+
+    def receive(msg=('sync next',tempList,sendTo),from_=server):
+        output("sync next received from:" +str(server))
+        #output(tempList)
+        reqType = tempList[0]
+        clientId = str(tempList[1])
+        for client in clientList:
+          if clientId in (str(client)):
+            clientId = clientList[0]
+            break       
+        bankName = tempList[2]
+        clientNumber = tempList[3]
+        sequenceNumber = tempList[4]
+        accountNumber = tempList[5]
+        amount = tempList[6]
+        send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=sendTo)
+        #output("\n\tclientid:" + str(clientId))
         
+             
     
     def main():
         #if(len(servList) >0):
@@ -166,7 +200,7 @@ class Server(process):
     def receive(msg=('ack',reqID), from_=next):
         if(crash != True):
           Sent[reqID] = True;
-          output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
+          #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
           if prev != None:
             send(('ack',reqID), to=prev)
 
@@ -178,29 +212,31 @@ class Server(process):
             
           for transaction in processedTransactions:
             if reqID in transaction.lower():
+              print(str(transaction))
               tempList = transaction.split("|")
-              output(tempList)
-              reqType = tempList[0]
-              clientId = tempList[1]
-              bankName = tempList[2]
-              clientNumber = tempList[3]
-              sequenceNumber = tempList[4]
-              accountNumber = tempList[5]
-              amount = tempList[6]
-              send((reqType, clientId, bankName,clientNumber, sequenceNumber, accountNumber, amount,), to=next)
-              break
+              break;
+          sendTo = next
+          if(next == None):
+            sendTo = self.id
+          #output("<<<<<<<check here...........sending to: "+ str(sendTo))
+          #print(str(type(sendTo)) + "value:" + str(sendTo))
+          send(("sync next",tempList,sendTo), to=master)
+          
 
     def receive(msg=('Update',prevServ, nextServ,role), from_=master):
+        #output("<<<<<<<check here............>>>>>>"+str(prevServ)+ "next: "+str(nextServ))
         if(crash != True):
           if (next != nextServ):
             next = nextServ
             self.role = str(role)
+            #output("<<<<<<<check here............>>>>>>"+str(role))
             for reqID in Sent.keys():
               if Sent[reqID] == False:
                 sync_next(reqID)
           prev = prevServ
         
-          
+
+                      
    
     def receive(msg=('chainUpdate',newRole,newTail), from_=master):
         if(crash != True):
@@ -210,7 +246,7 @@ class Server(process):
      
 
     def receive(msg=('setup',processedTransactions,processedRequestIDs,accountSummary,Sent),from_=prevTail):
-        #output("i am new tail,informing master")
+        output("i am new tail,informing master")
         if(crash != True):
           role = 'tail'
           next = None
@@ -296,6 +332,7 @@ class Server(process):
           transaction = 'Deposit' + "|" + str(clientId)+ "|" + bankName + "|" + str(clientNumber)  + "|" + str(sequenceNumber)  + "|" + str(accountNumber) + "|" +  str(amount)
           reqID = str(clientNumber) + "|" + str(sequenceNumber) + "|" + str(accountNumber)          
           #If the same transaction has already been processed, return the same reply
+          print(clientId)
           if transaction in processedTransactions:
              reply = processedTransactions[transaction]
              #output(reply)
@@ -323,11 +360,15 @@ class Server(process):
          
           if (role == 'tail'):
              output("Deposit processed ..sending to client, from: " + role +" to client: "+ str(clientId))
-             output(outcome)
+             
              send((outcome,'Deposit', bankName, clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
              
-             output("sending ack to remove old update: "+ str(reqID) + " from:" +str(role))
-             Sent[reqID] = True 
+             #output("sending ack to remove old update: "+ str(reqID) + " from:" +str(role))
+             Sent[reqID] = True
+             print("\n\t Request Buffer at tail:........................")
+             for key,value in Sent.items():
+               print (key) 
+               print (value) 
              send(('ack',reqID), to=prev)           
           else:
              #output("Deposit sent to next server from: " + role)
@@ -396,10 +437,14 @@ class Server(process):
              processedRequestIDs.append(reqID)
              
           if (role == 'tail'):
-             #output("Withdraw request ..sending to client from: " + role)         
+             output("Withdraw request ..sending to client from: " + role)         
              send((outcome,'Withdraw', bankName, clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
-             output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
+             #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
              Sent[reqID] = True 
+             print("\n\t Request Buffer at tail: ...............")
+             for key,value in Sent.items():
+               print (key) 
+               print (value)
              send(('ack',reqID), to=prev)
           else:
              #output("Withdraw request sent to next server from: " + role)
@@ -471,7 +516,9 @@ class Client(process):
         elif role == 'tail' and self.tail != server:
           output("Client: msg received from Master: tail changed to:" +str(server))
           self.tail = server
-
+    
+    def receive(msg=("hello"),from_=server):
+        output("\n<<<<<<<<<<<<<<<<<<<DONE>>>>>>>>>>>>")
     
 def main():
 
@@ -587,7 +634,7 @@ def main():
           reqlist.append(str(seqno))
           reqlist.append(str(accno))
           reqlist.append(str(amt))
-          reqarg =  ", ".join(reqlist)
+          reqarg =  ",".join(reqlist)
           if select < probGetBalance*10 : 
             requestList.append(('getBalance',bankname,reqarg))
           
