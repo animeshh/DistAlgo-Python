@@ -1,0 +1,23 @@
+<Bank>
+	BankName: Bank Of America
+	<Client>
+		Request: getBalance(Bank Of America, 1, 2, 1)		
+		WaitTime: 5000
+		MaxResendAttempts: 3
+	</Client>
+</Bank>
+    BankName: JP Morgan Chase
+	<Client>
+		Request: getBalance(JP Morgan Chase, 50 , 2, 50)		
+		WaitTime: 4000
+		MaxResendAttempts: 2
+	</Client>
+</Bank>
+</Bank>
+    BankName: Citi Bank
+	<Client>
+		Request: getBalance(Citi Bank, 100, 2, 150)		
+		WaitTime: 4000
+		MaxResendAttempts: 2
+	</Client>
+</Bank>

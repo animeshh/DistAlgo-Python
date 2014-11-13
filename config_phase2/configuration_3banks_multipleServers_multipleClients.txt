@@ -1,0 +1,26 @@
+[config_test]
+bankCount = 2
+bank1reqType=auto
+bank2reqType=itemized
+
+bank1 = Bank Of America
+ChainLength = 2
+bank1client = 1
+Request = Deposit(Bank Of America, 57, 1, 441, 200)
+Request = getBalance(Bank Of America, 57, 2, 441)
+Request = Deposit(Bank Of America, 57, 3, 441, 220)
+Request = Withdraw(Bank Of America, 57, 4, 441, 50)
+Request = Withdraw(Bank Of America, 57, 4, 441, 500)		
+WaitTime = 2000
+MaxResendAttempts =  3
+
+bank2 = tfcu
+ChainLength = 2
+bank2client = 2
+Request = Deposit(57, 1, 441, 200)
+Request = getBalance(57, 2, 441)
+Request = Deposit(57, 3, 441, 220)
+Request = Withdraw(57, 4, 441, 50)
+Request = Withdraw(57, 4, 441, 500)		
+WaitTime = 2000
+MaxResendAttempts =  3

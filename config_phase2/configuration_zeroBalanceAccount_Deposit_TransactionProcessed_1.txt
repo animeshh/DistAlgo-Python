@@ -1,0 +1,24 @@
+<Bank>
+	BankName: Bank Of America
+	<Client>
+		Request: Deposit(Bank Of America, 1, 1, 1, 2000)		
+		WaitTime: 5000
+		MaxResendAttempts: 3
+	</Client>
+</Bank>
+    BankName: JP Morgan Chase
+	<Client>
+		Request: Deposit(JP Morgan Chase, 50 , 1, 50, 1500)	
+		Request: Deposit(JP Morgan Chase, 50 , 1, 50, 1500)	
+		WaitTime: 4000
+		MaxResendAttempts: 2
+	</Client>
+</Bank>
+</Bank>
+    BankName: Citi Bank
+	<Client>
+		Request: Deposit(Citi Bank, 100, 1, 150, 250)		
+		WaitTime: 4000
+		MaxResendAttempts: 2
+	</Client>
+</Bank>

@@ -1,0 +1,117 @@
+<Bank>
+	BankName: Bank Of America
+	ChainLength: 6
+	NumberOfClients: 8
+	<Server>
+	   IP: 127.0.0.1
+	   port: 4000
+	   StartupDelay: 0
+	   Lifetime: send 80 
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 4010
+	   StartupDelay: 0
+	   Lifetime: send 80  
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 4020
+	   StartupDelay: 0
+	   Lifetime: receive 100  
+	</Server>
+	<Server>
+	  IP: 127.0.0.1
+	   port: 4030
+	   StartupDelay: 0
+	   Lifetime: receive 80   
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 4040
+	   StartupDelay: 0
+	   Lifetime: send random  
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 4050
+	   StartupDelay: 0
+	   Lifetime: unbounded  
+	</Server>	
+</Bank>
+<Bank>
+	BankName: JP Morgan Chase
+	ChainLength: 6
+	NumberOfClients: 6
+	<Server>
+	   IP: 127.0.0.1
+	   port: 6000
+	   StartupDelay: 0
+	   Lifetime: send 80 
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 6010
+	   StartupDelay: 0
+	   Lifetime: send 100  
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 6020
+	   StartupDelay: 0
+	   Lifetime: receive 80  
+	</Server>
+	<Server>
+	  IP: 127.0.0.1
+	   port: 6030
+	   StartupDelay: 0
+	   Lifetime: receive 100   
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 6040
+	   StartupDelay: 0
+	   Lifetime: send random  
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 6050
+	   StartupDelay: 0
+	   Lifetime: unbounded  
+	</Server>
+</Bank>
+<Bank>
+	BankName: Citi Bank
+	ChainLength: 5
+	NumberOfClients: 6
+	<Server>
+	   IP: 127.0.0.1
+	   port: 5000
+	   StartupDelay: 0
+	   Lifetime: send 80 
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 5010
+	   StartupDelay: 0
+	   Lifetime: send 100  
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 5020
+	   StartupDelay: 0
+	   Lifetime: receive 80  
+	</Server>
+	<Server>
+	  IP: 127.0.0.1
+	   port: 5030
+	   StartupDelay: 0
+	   Lifetime: receive 100   
+	</Server>
+	<Server>
+	   IP: 127.0.0.1
+	   port: 5040
+	   StartupDelay: 0
+	   Lifetime: send random  
+	</Server>
+</Bank>
