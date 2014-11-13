@@ -557,9 +557,14 @@ class Client(process):
 def main():
 
   parser = configparser.ConfigParser()
-  parser.read('./config_phase3/ack_test.ini')
+  
+  parser.read('./config_phase3/config.ini')
   #Config.read("c:\\tomorrow.ini")
-  parser.read('./config_phase3/chain_extention.ini')
+  configType = "config1"
+  for sysarg in sys.argv[1:]:
+    configType = sysarg
+  fileName = parser.get('config_test', str(configType))
+  parser.read('./config_phase3/' +str(fileName))
   
   bankCount = int(parser.get('config_test', 'numBank'))
   #Master Process setup and creation
