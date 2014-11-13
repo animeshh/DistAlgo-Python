@@ -8,7 +8,7 @@ Project_Description:- 1.project.txt
 
 Code Folders:- 1. distAlgo: chain_rep_distalgo 2. Java : Pending...
 
-Config Files: 1. config.json in respective folders 2. bootstrap.sh in nodejs consists of code to start clients and servers
+Config Files: 1. config-phase2 , config_phase3 folders 
 
 Test cases : config_phase2, config_phase3
 

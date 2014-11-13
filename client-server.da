@@ -6,7 +6,7 @@ import random
 #import time
 #import re
 import os
-TIMEOUT = 1
+
 
     
     
@@ -28,7 +28,7 @@ class Master(process):
         rootlog._filelvl = filelvl
         rootlog.addHandler(fh)
 
-    def setup(chainList):
+    def setup(chainList,timeout):
         self.q = set()
         self.servList = list(chainList)
         #self.myself = master
@@ -38,6 +38,7 @@ class Master(process):
         self.crashTail = tail
         self.newTail = tail
         self.flag = 1
+        self.TIMEOUT = timeout
    
     def notify():
       
@@ -45,7 +46,7 @@ class Master(process):
         
         if (await(False)):
           pass
-        elif timeout(5*TIMEOUT):
+        elif timeout(TIMEOUT):
           
           if not servList:
             break
@@ -152,7 +153,7 @@ class Master(process):
     
 class Server(process):
     #self.next1 = 5
-    def setup(role,prev,next,maxReceive,maxSend,startDelay,master):  
+    def setup(role,prev,next,maxReceive,maxSend,startDelay,master,timeout):  
         self.bankName = None
         self.clientNumber = -1
         self.sequenceNumber = -1
@@ -178,6 +179,7 @@ class Server(process):
         self.reqType = None
         self.clientId = None
         self.Sent = {}
+        self.TIMEOUT = timeout
         #self.sleep = True        
 
         #output("start Server id:" + str(self.id)+ " next id " +str(next))
@@ -567,6 +569,8 @@ def main():
   parser.read('./config_phase3/' +str(fileName))
   
   bankCount = int(parser.get('config_test', 'numBank'))
+  masterTimeout = int(parser.get('config_test', 'masterTimeout'))
+  serverTimeout = int(parser.get('config_test', 'serverTimeout'))
   #Master Process setup and creation
   master = new(Master, num= 1)
     
@@ -593,7 +597,7 @@ def main():
     chainList = []
     chainList = servers[0:initChain]
     #send(('Chain init',chainList), to=master)
-    setup(master,[chainList])
+    setup(master,[chainList,masterTimeout])
     start(master)
     for serverNum, p in enumerate(servers):
       
@@ -617,15 +621,15 @@ def main():
       #print(str(initChain))
  
       if serverNum == (initChain-1):
-        setup(p, ['tail',servers[serverNum - 1],None,maxReceive,maxSend,startDelay,master])    
+        setup(p, ['tail',servers[serverNum - 1],None,maxReceive,maxSend,startDelay,master,serverTimeout])    
       
       elif serverNum == 0:
-        setup(p, ['head',None,servers[serverNum + 1], maxReceive,maxSend,startDelay,master])
+        setup(p, ['head',None,servers[serverNum + 1], maxReceive,maxSend,startDelay,master,serverTimeout])
       
       elif serverNum < initChain:
-        setup(p, ['replica'+str(serverNum),servers[serverNum - 1],servers[serverNum+1],maxReceive,maxSend,startDelay,master])    
+        setup(p, ['replica'+str(serverNum),servers[serverNum - 1],servers[serverNum+1],maxReceive,maxSend,startDelay,master,serverTimeout])    
       else:
-        setup(p, [None,None,None,maxReceive,maxSend,startDelay,master])    
+        setup(p, [None,None,None,maxReceive,maxSend,startDelay,master,serverTimeout])    
         
     for i, p in enumerate(clients):
       requestList = []
@@ -685,7 +689,7 @@ def main():
           else:
             requestList.append(('Deposit',bankname,reqarg))
                 
-        setup(p, (head,tail,requestList,master))
+        setup(p, (head,tail,requestList,master,serverTimeout))
     
     start(servers)
     start(clients)
