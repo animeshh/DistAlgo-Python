@@ -5,8 +5,20 @@ import random
 #import set
 #import time
 #import re
+import os
 TIMEOUT = 1
-def setup_logfile(filename):
+
+    
+    
+
+class Master(process):
+    def main():
+        setup_logfile("./Logs/master_logs.txt")
+        #output("Logging master logs to master_logs.txt")
+        notify()
+        await(0)
+
+    def setup_logfile(filename):
         rootlog = logging.getLogger('')
         filelvl = logging.INFO
         fh = logging.FileHandler(filename)
@@ -14,8 +26,8 @@ def setup_logfile(filename):
         fh.setFormatter(formatter)
         fh.setLevel(filelvl)
         rootlog._filelvl = filelvl
+        rootlog.addHandler(fh)
 
-class Master(process):
     def setup(chainList):
         self.q = set()
         self.servList = list(chainList)
@@ -86,7 +98,7 @@ class Master(process):
           
     # Add in queue for all server pings- "I am Alive"
     def receive(msg=('I am alive'), from_=server):
-        output("\n\tI am alive-server: " +str(server)+"\n")
+        #output("\n\tI am alive-server: " +str(server)+"\n")
         q.add((0,server))
         if(crashTail != tail):
           if(flag ==0):
@@ -101,7 +113,7 @@ class Master(process):
         #output("Master: init msg received from client: "+str(client))
 
     def receive(msg=('chainExtention'), from_=newTail):
-        output("chain Extension msg received from server new"+str(newTail))
+        output("chain Extension msg received from new server"+str(newTail))
         role = 'replica'+str(len(servList)-1)
         output("current tail"+str(tail))
         crashTail = tail
@@ -135,13 +147,7 @@ class Master(process):
         amount = tempList[6]
         send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=sendTo)
         #output("\n\tclientid:" + str(clientId))
-        
-             
-    
-    def main():
-        #if(len(servList) >0):
-        notify()
-        await(0)
+
 
     
 class Server(process):
@@ -178,6 +184,9 @@ class Server(process):
 
     def main():   
         
+        setup_logfile("./Logs/server_logs.txt")
+        #output("Logging server logs to Logs/server_logs.txt")
+
         while(startDelay):
           if await(False):
             pass
@@ -197,10 +206,22 @@ class Server(process):
         #output("Killing server: with crash value" + str(crash))
         await(crash)
 
+
+       
+    def setup_logfile(filename):
+        rootlog = logging.getLogger('')
+        filelvl = logging.INFO
+        fh = logging.FileHandler(filename)
+        formatter = logging.Formatter('[%(asctime)s]%(name)s: %(message)s')
+        fh.setFormatter(formatter)
+        fh.setLevel(filelvl)
+        rootlog._filelvl = filelvl
+        rootlog.addHandler(fh)
+
     def receive(msg=('ack',reqID), from_=next):
         if(crash != True):
           Sent[reqID] = True;
-          #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
+          output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
           if prev != None:
             send(('ack',reqID), to=prev)
 
@@ -212,7 +233,7 @@ class Server(process):
             
           for transaction in processedTransactions:
             if reqID in transaction.lower():
-              print(str(transaction))
+              #print(str(transaction))
               tempList = transaction.split("|")
               break;
           sendTo = next
@@ -332,7 +353,7 @@ class Server(process):
           transaction = 'Deposit' + "|" + str(clientId)+ "|" + bankName + "|" + str(clientNumber)  + "|" + str(sequenceNumber)  + "|" + str(accountNumber) + "|" +  str(amount)
           reqID = str(clientNumber) + "|" + str(sequenceNumber) + "|" + str(accountNumber)          
           #If the same transaction has already been processed, return the same reply
-          print(clientId)
+          #print(clientId)
           if transaction in processedTransactions:
              reply = processedTransactions[transaction]
              #output(reply)
@@ -363,12 +384,12 @@ class Server(process):
              
              send((outcome,'Deposit', bankName, clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
              
-             #output("sending ack to remove old update: "+ str(reqID) + " from:" +str(role))
+             output("sending ack to remove old update: "+ str(reqID) + " from:" +str(role))
              Sent[reqID] = True
-             print("\n\t Request Buffer at tail:........................")
+             """print("\n\t Request Buffer at tail:........................")
              for key,value in Sent.items():
                print (key) 
-               print (value) 
+               print (value)""" 
              send(('ack',reqID), to=prev)           
           else:
              #output("Deposit sent to next server from: " + role)
@@ -439,12 +460,12 @@ class Server(process):
           if (role == 'tail'):
              output("Withdraw request ..sending to client from: " + role)         
              send((outcome,'Withdraw', bankName, clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
-             #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
+             output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
              Sent[reqID] = True 
-             print("\n\t Request Buffer at tail: ...............")
-             for key,value in Sent.items():
+             #print("\n\t Request Buffer at tail: ...............")
+             """for key,value in Sent.items():
                print (key) 
-               print (value)
+               print (value)"""
              send(('ack',reqID), to=prev)
           else:
              #output("Withdraw request sent to next server from: " + role)
@@ -474,9 +495,11 @@ class Client(process):
         
 
     def main():
-        #parse requestList here...
         
-        #parsereqList(reqList)
+        setup_logfile("./Logs/client_logs.txt")
+        #output("Logging client logs to Logs/client_logs.txt")
+
+
         send(('Client init'), to=master)      #send to Master     
     
         for x in requestList:
@@ -503,6 +526,17 @@ class Client(process):
         await(False)
         #await(received((outcome,requestType,bankName, clientNumber, sequenceNumber, accountNumber, balance,),))
     
+    def setup_logfile(filename):
+        rootlog = logging.getLogger('')
+        filelvl = logging.INFO
+        fh = logging.FileHandler(filename)
+        formatter = logging.Formatter('[%(asctime)s]%(name)s: %(message)s')
+        fh.setFormatter(formatter)
+        fh.setLevel(filelvl)
+        rootlog._filelvl = filelvl
+        rootlog.addHandler(fh)
+
+
     def receive(msg=(outcome,requestType,bankName, clientNumber, sequenceNumber, accountNumber, balance,)):
         if requestType == 'GetBalance':
            output("Request: " + str(requestType) + ", Outcome: " + outcome + ", Bank: " + bankName + ", ClientNumber: " + str(clientNumber) + ", SequenceNumber: " + str(sequenceNumber) + ", AccountNumber: " + str(accountNumber) + ", Balance: " + str(balance))
@@ -523,8 +557,10 @@ class Client(process):
 def main():
 
   parser = configparser.ConfigParser()
-  parser.read('config1.ini')
+  parser.read('./config_phase3/ack_test.ini')
   #Config.read("c:\\tomorrow.ini")
+  parser.read('./config_phase3/chain_extention.ini')
+  
   bankCount = int(parser.get('config_test', 'numBank'))
   #Master Process setup and creation
   master = new(Master, num= 1)

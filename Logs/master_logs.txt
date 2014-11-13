@@ -1,0 +1,15 @@
+[2014-11-12 19:22:45,769]Master[('animesh-AO532h', 34944)]: chain Extension msg received from new server('animesh-AO532h', 14391)
+[2014-11-12 19:22:45,770]Master[('animesh-AO532h', 34944)]: current tail('animesh-AO532h', 24876)
+[2014-11-12 19:22:47,775]Master[('animesh-AO532h', 34944)]: chain Extension msg received from new server('animesh-AO532h', 27681)
+[2014-11-12 19:22:47,777]Master[('animesh-AO532h', 34944)]: current tail('animesh-AO532h', 24876)
+[2014-11-12 19:22:52,708]Master[('animesh-AO532h', 34944)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 24876)
+[2014-11-12 19:22:52,747]Master[('animesh-AO532h', 34944)]: sync next received from:('animesh-AO532h', 17863)
+[2014-11-12 19:22:52,762]Master[('animesh-AO532h', 34944)]: sync next received from:('animesh-AO532h', 17863)
+[2014-11-12 19:22:52,776]Master[('animesh-AO532h', 34944)]: sync next received from:('animesh-AO532h', 17863)
+[2014-11-12 19:22:52,781]Master[('animesh-AO532h', 34944)]: removed crash tail,now temp tail: ('animesh-AO532h', 17863)
+[2014-11-12 19:22:52,804]Master[('animesh-AO532h', 34944)]: sync next received from:('animesh-AO532h', 17863)
+[2014-11-12 19:22:52,899]Master[('animesh-AO532h', 34944)]: chain Extension completes,new tail added:('animesh-AO532h', 27681)
+[2014-11-12 19:23:02,738]Master[('animesh-AO532h', 34944)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 17863)
+[2014-11-12 19:23:02,805]Master[('animesh-AO532h', 34944)]: sync next received from:('animesh-AO532h', 29266)
