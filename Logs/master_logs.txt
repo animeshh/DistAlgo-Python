@@ -13,3 +13,5 @@ Master:identified crashed server now as: ('animesh-AO532h', 24876)
 [2014-11-12 19:23:02,738]Master[('animesh-AO532h', 34944)]: 
 Master:identified crashed server now as: ('animesh-AO532h', 17863)
 [2014-11-12 19:23:02,805]Master[('animesh-AO532h', 34944)]: sync next received from:('animesh-AO532h', 29266)
+[2014-11-12 19:30:57,449]Master[('animesh-AO532h', 16145)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 26898)
