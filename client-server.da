@@ -2,13 +2,7 @@ import sys
 import configparser
 import logging
 import random
-#import set
-#import time
-#import re
-import os
-
-
-    
+   
     
 
 class Master(process):
@@ -37,8 +31,9 @@ class Master(process):
         self.totalTail = []
         #self.crashTail = tail
         #self.newTail = tail
-        self.flag = 1
+        #self.flag = 1
         self.TIMEOUT = timeout
+        self.g_sync = 0
 
        
         init_tailList(totalServList)
@@ -69,12 +64,14 @@ class Master(process):
                 removeIndex.append(server)
                 serverCrash = True
                 output("\nMaster:identified crashed server now as: " +str(server) +"from bankNO: " +str(bankNo))
-              
+          #end of server for loop    
           if (serverCrash):
             for value in removeIndex:
                 for servList in totalServList:
-                  servList.remove(value)
-                  break
+                  if value in servList:
+                    servList.remove(value)
+                    #print("check here.."+str(totalServList))
+                    break
 
             for bankNo,servList in enumerate(totalServList):
               chainLength = len(servList)
@@ -105,8 +102,9 @@ class Master(process):
 
                   #output("\n\tSending req. to update buffer\n")
                   #send(('start updating buffer'), to=head)
-              
-            del removeIndex[:]   
+            #end of for loop 
+            del removeIndex[:] 
+          g_sync = 1  
 
           
     # Add in queue for all server pings- "I am Alive"
@@ -126,47 +124,63 @@ class Master(process):
         #output("Master: init msg received from client: "+str(client))
 
     def receive(msg=('chainExtention',bankNo), from_=newTail):
+        #servList = []
+        #g_sync = 0
         output("chain Extension msg received from new server"+str(newTail))
-        servList = totalServList[bankNo]
-        chainLength = len(servList)
-        l_tail = servList[chainLength - 1] 
         
-        role = 'replica'+str(chainLength -1)
-        #output("current tail"+str(l_tail))
-        #crashTail = l_tail
-        #l_newTail = newTail
-        #l_flag =0
-        #if await(False):pass
-        #elif timeout(6*TIMEOUT):
-        #if(crashTail != tail):
-        send(('chainUpdate',role,newTail), to=l_tail)
+        """while(g_sync != 1):
+          if(await(False)):pass
+          elif timeout(2):
+           output("waiting....")
+           g_sync = 1"""
         
+        my_sleep(bankNo,newTail)
+        
+    def my_sleep(bankNo,newTail):
+
+        
+          servList = totalServList[bankNo]
+          chainLength = len(servList)
+          l_tail = servList[chainLength - 1] 
+          #imp todo chk here..... what if l_tail is already crashed wait for master to recover from this.....
+          
+          role = 'replica'+str(chainLength -1)
+          #output("current tail"+str(l_tail))
+          #crashTail = l_tail
+          #l_newTail = newTail
+          #l_flag =0
+          #if await(False):pass
+          #elif timeout(6*TIMEOUT):
+          #if(crashTail != tail):
+          send(('chainUpdate',role,newTail), to=l_tail)
+
     def receive(msg=('newTail',bankNo),from_=newTail):
         output("chain Extension completes,new tail added:"+str(newTail))
-        servList = totalServList[bankNo]
-        servList.append(newTail) 
+        #servList = []
+        q.add((0,newTail))
+        totalServList[bankNo].append(newTail) 
         #tail = newTail
         #crashTail = tail
         clientList = totalClientList[bankNo]
         send(('tail',newTail), to=clientList)
 
-    def receive(msg=('sync next',tempList,sendTo),from_=server):
+    def receive(msg=('sync next',tempList,sendTo,bankNo),from_=server):
         output("sync next received from:" +str(server))
         #output(tempList)
         reqType = tempList[0]
         clientId = str(tempList[1])
-        for clientList in totalClientList:
-          for client in clientList:
-            if clientId in (str(client)):
-              clientId = client
-              break       
+        clientList = totalClientList[bankNo]
+        for client in clientList:
+          if clientId in (str(client)):
+            clientId = client
+            break       
         bankName = tempList[2]
         clientNumber = tempList[3]
         sequenceNumber = tempList[4]
         accountNumber = tempList[5]
         amount = tempList[6]
         send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=sendTo)
-        output("\n\tclientid: " + str(clientId))
+        #output("\n\tclientid: " + str(clientId))
 
 
     
@@ -215,7 +229,7 @@ class Server(process):
           elif timeout(startDelay):
             startDelay = 0
             send(('chainExtention',bankNo), to=master)
-                      
+                                  
         while (crash == False):
           #output("inside main, server: "+ str(role) +str(crash))
           if(receiveCount >= maxReceive or sendCount >= maxSend):
@@ -298,7 +312,7 @@ class Server(process):
           self.processedRequestIDs = processedRequestIDs
           self.accountSummary = accountSummary
           self.Sent = dict(Sent)
-          send(('newTail'),to=master)
+          send(('newTail',bankNo),to=master)
                   
     #///////////////////////////////////////////////////////QUERY HANDLING FROM CLIENT////////////////////////////////////////////////////////////////////////
 
@@ -642,25 +656,25 @@ def main():
           maxReceive =    int(limitType[1])
         elif operation == 'startDelay':
           startDelay = int(limitType[1])
-      #print(str(initChain))
+      
  
       if serverNum == (initChain-1):
-        setup(p, ['tail',servers[serverNum - 1],None,maxReceive,maxSend,startDelay,master,serverTimeout,bankNo])    
+        setup(p, ['tail',servers[serverNum - 1],None,maxReceive,maxSend,startDelay,master,serverTimeout,bankNo-1])    
       
       elif serverNum == 0:
-        setup(p, ['head',None,servers[serverNum + 1], maxReceive,maxSend,startDelay,master,serverTimeout,bankNo])
+        setup(p, ['head',None,servers[serverNum + 1], maxReceive,maxSend,startDelay,master,serverTimeout,bankNo-1])
       
       elif serverNum < initChain:
-        setup(p, ['replica'+str(serverNum),servers[serverNum - 1],servers[serverNum+1],maxReceive,maxSend,startDelay,master,serverTimeout,bankNo])    
+        setup(p, ['replica'+str(serverNum),servers[serverNum - 1],servers[serverNum+1],maxReceive,maxSend,startDelay,master,serverTimeout,bankNo-1])    
       else:
-        setup(p, [None,None,None,maxReceive,maxSend,startDelay,master,serverTimeout,bankNo])    
+        setup(p, [None,None,None,maxReceive,maxSend,startDelay,master,serverTimeout,bankNo-1])    
         
     for i, p in enumerate(clients):
       requestList = []
       if bankreqType == 'itemized':
         bankitemisedReq = parser.get('config_test', 'bank' + str(bankNo) + 'client' + str(i+1) + 'itemisedReq')
         reqlist = bankitemisedReq.split(';')
-        print("no of requests: " + str(len(reqlist)) + "--from client" + str(i+1))
+        print("no of requests: " + str(len(reqlist)) + "--from bank" + str(bankNo)+ "client"+str(i+1))
         for m in range (0,len(reqlist)):
           reqtype=reqlist[m].split(":")
           operation = reqtype[0]
