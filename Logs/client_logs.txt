@@ -1,16 +1,2 @@
-[2014-11-12 19:22:42,892]Client[('animesh-AO532h', 38369)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 1, AccountNumber: 441, Balance: 100.0
-[2014-11-12 19:22:42,899]Client[('animesh-AO532h', 12293)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 1, AccountNumber: 442, Balance: 200.0
-[2014-11-12 19:22:52,731]Client[('animesh-AO532h', 12293)]: Client: msg received from Master: tail changed to:('animesh-AO532h', 17863)
-[2014-11-12 19:22:52,744]Client[('animesh-AO532h', 38369)]: Client: msg received from Master: tail changed to:('animesh-AO532h', 17863)
-[2014-11-12 19:22:52,818]Client[('animesh-AO532h', 38369)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 4, AccountNumber: 441, Balance: 370.0
-[2014-11-12 19:22:52,848]Client[('animesh-AO532h', 38369)]: Request: Deposit, Outcome: InconsistentWithHistory, Bank: BOA, ClientNumber: 57, SequenceNumber: 3, AccountNumber: 442, Balance: 300.0
-[2014-11-12 19:22:52,871]Client[('animesh-AO532h', 38369)]: Request: Withdraw, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 2, AccountNumber: 441, Balance: 50.0
-[2014-11-12 19:22:52,904]Client[('animesh-AO532h', 38369)]: Client: msg received from Master: tail changed to:('animesh-AO532h', 27681)
-[2014-11-12 19:22:52,909]Client[('animesh-AO532h', 12293)]: Client: msg received from Master: tail changed to:('animesh-AO532h', 27681)
-[2014-11-12 19:23:02,841]Client[('animesh-AO532h', 38369)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 3, AccountNumber: 441, Balance: 150.0
-[2014-11-12 19:30:47,548]Client[('animesh-AO532h', 28083)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 1, AccountNumber: 441, Balance: 100.0
-[2014-11-12 19:30:57,463]Client[('animesh-AO532h', 28083)]: Client: msg received from Master: head change to :('animesh-AO532h', 26483)
-[2014-11-12 19:30:57,468]Client[('animesh-AO532h', 25318)]: Client: msg received from Master: head change to :('animesh-AO532h', 26483)
-[2014-11-12 19:31:43,361]Client[('animesh-AO532h', 10558)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 1, AccountNumber: 441, Balance: 100.0
-[2014-11-12 19:31:43,380]Client[('animesh-AO532h', 30846)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 1, AccountNumber: 442, Balance: 200.0
-[2014-11-12 19:31:49,000]Client[('animesh-AO532h', 28005)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 57, SequenceNumber: 1, AccountNumber: 441, Balance: 100.0
+[2014-11-16 14:25:32,345]Client[('animesh-AO532h', 34200)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 5001, SequenceNumber: 1, AccountNumber: 1001, Balance: 100.0
+[2014-11-16 14:25:32,348]Client[('animesh-AO532h', 34124)]: Request: Withdraw, Outcome: InsufficientFunds, Bank: CITI, ClientNumber: 7001, SequenceNumber: 1, AccountNumber: 9001, Balance: 0.0
