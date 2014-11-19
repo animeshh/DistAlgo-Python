@@ -33,7 +33,8 @@ class Master(process):
         #self.newTail = tail
         #self.flag = 1
         self.TIMEOUT = timeout
-        self.g_sync = 0
+        self.transfer_reqHead = []
+        self.chain_exttail = []
 
        
         init_tailList(totalServList)
@@ -63,7 +64,7 @@ class Master(process):
               else:
                 removeIndex.append(server)
                 serverCrash = True
-                output("\nMaster:identified crashed server now as: " +str(server) +"from bankNO: " +str(bankNo))
+                output("\nMaster:identified crashed server now as: " +str(server) +"from bankNO: " +str(bankNo+1))
           #end of server for loop    
           if (serverCrash):
             for value in removeIndex:
@@ -103,8 +104,28 @@ class Master(process):
                   #output("\n\tSending req. to update buffer\n")
                   #send(('start updating buffer'), to=head)
             #end of for loop 
+            for index,item in enumerate(transfer_reqHead):
+              for x in removeIndex:
+                if str(x) in str(item):
+                  break
+                else:
+                  del transfer_reqHead[index]
+            
+            #print("\n\tcheck here1:.."+str(chain_exttail))
+            for index,item in enumerate(chain_exttail):
+              for x in removeIndex:
+                if str(x) in str(item):
+                  print("\n\tcheck here2:.."+str(chain_exttail))
+                  break
+                else:
+                  del chain_exttail[index]               
             del removeIndex[:] 
-          g_sync = 1  
+            print("calling pendng req.:"+str(transfer_reqHead))
+            pending_req()
+          else:pass
+            print("no crash ,value of transfer req head: "+str(transfer_reqHead))
+            #del transfer_reqHead[:]
+            #del chain_exttail[:]  
 
           
     # Add in queue for all server pings- "I am Alive"
@@ -133,7 +154,11 @@ class Master(process):
           elif timeout(2):
            output("waiting....")
            g_sync = 1"""
-        
+        servList = totalServList[bankNo]
+        chainLength = len(servList)
+        l_tail = servList[chainLength - 1] 
+        chain_exttail.append(str(bankNo)+" "+str(newTail)+" "+str(l_tail))
+        print("\n\tcheck here0:.."+str(chain_exttail))
         my_sleep(bankNo,newTail)
         
     def my_sleep(bankNo,newTail):
@@ -182,12 +207,35 @@ class Master(process):
         send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=sendTo)
         #output("\n\tclientid: " + str(clientId))
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    def receive(msg=('destBank ID',destBankNo), from_=servTail):
-        #print ("\n\tcheck here...: "+str(destBankNo))
+    def receive(msg=('destBank ID',destBankNo,srcBankNo), from_=servTail):
+       
+        print ("\n\tgot req from bank tail, transfer to another bank head: "+str(destBankNo+1))
         bankList = totalServList[int(destBankNo)]
         destBank = bankList[0]
-        output("sending destBank head address..." + str(destBank))
+        transfer_reqHead.append(str(destBankNo)+" "+str(srcBankNo)+" "+str(destBank))
+        
+        #output("sending destBank head address..." + str(destBank))
         send(('destBank id',destBank), to=servTail)
+    
+    def pending_req():
+        
+        for item in transfer_reqHead:
+          l = list(item.split())
+          destBankNo,srcBankNo = int(l[0]),int(l[1])
+          destBankList = totalServList[destBankNo]
+          destBank = destBankList[0]
+          srcBankList = totalServList[srcBankNo]
+          servTail = srcBankList[len(srcBankList)-1]          
+          #print(type(servTail)) 
+          send(('destBank id',destBank), to=servTail)
+
+        #l = []
+        for item in chain_exttail:
+          l = list(item.split())
+          my_sleep(int(l[0]),int(l[1]))
+
+        del transfer_reqHead[:]
+        del chain_exttail[:]
 
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Server(process):
@@ -226,7 +274,7 @@ class Server(process):
 
         #output("start Server id:" + str(self.id)+ " next id " +str(next))
 
-    def main():   
+    def main():  
         
         setup_logfile("./Logs/server_logs.txt")
         #output("Logging server logs to Logs/server_logs.txt")
@@ -583,7 +631,7 @@ class Server(process):
              
           if (role == 'tail'):
              output("Transfer to request ..sending to another bank head from: " + role)         
-             send(('destBank ID',int(destBankNo)), to=master)
+             send(('destBank ID',int(destBankNo),int(self.bankNo)), to=master)
              #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
              Sent[reqID] = False 
              #print("\n\t Request Buffer at tail: ...............")
@@ -912,7 +960,7 @@ def main():
   setup(master,[totalChainList,totalClientList,masterTimeout])
   start(master)
   for bankNo in range(bankCount):
-    #print(totalServerList[t])
+    #print(totalServList[t])
     start(totalServList[bankNo])
     start(totalClientList[bankNo])
   

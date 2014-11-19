@@ -812,3 +812,112 @@ Master:identified crashed server now as: ('animesh-AO532h', 33834)from bankNO: 0
 [2014-11-16 21:35:20,493]Master[('animesh-AO532h', 37039)]: sending destBank head address...('animesh-AO532h', 39491)
 [2014-11-16 21:36:55,257]Master[('animesh-AO532h', 18130)]: sending destBank head address...('animesh-AO532h', 11670)
 [2014-11-16 21:38:13,571]Master[('animesh-AO532h', 27003)]: sending destBank head address...('animesh-AO532h', 31847)
+[2014-11-16 23:23:54,639]Master[('animesh-AO532h', 20761)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 21023)from bankNO: 0
+[2014-11-16 23:23:57,866]Master[('animesh-AO532h', 20761)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 18341)from bankNO: 0
+[2014-11-16 23:23:57,866]Master[('animesh-AO532h', 20761)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 10244)from bankNO: 0
+[2014-11-16 23:23:57,867]Master[('animesh-AO532h', 20761)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 32255)from bankNO: 1
+[2014-11-16 23:23:57,868]Master[('animesh-AO532h', 20761)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 25932)from bankNO: 1
+[2014-11-16 23:23:54,458]Master[('animesh-AO532h', 17457)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 27789)from bankNO: 0
+[2014-11-16 23:23:57,980]Master[('animesh-AO532h', 17457)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 35660)from bankNO: 0
+[2014-11-16 23:23:57,981]Master[('animesh-AO532h', 17457)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 28977)from bankNO: 0
+[2014-11-16 23:23:57,983]Master[('animesh-AO532h', 17457)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 10207)from bankNO: 1
+[2014-11-16 23:23:57,983]Master[('animesh-AO532h', 17457)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 28950)from bankNO: 1
+[2014-11-16 23:28:26,208]Master[('animesh-AO532h', 36257)]: sending destBank head address...('animesh-AO532h', 20908)
+[2014-11-16 23:28:35,880]Master[('animesh-AO532h', 36257)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 20908)from bankNO: 1
+[2014-11-16 23:28:35,908]Master[('animesh-AO532h', 36257)]: replica1
+[2014-11-16 23:33:28,855]Master[('animesh-AO532h', 35221)]: Caught exception while waiting for events: RuntimeError('maximum recursion depth exceeded',)
+[2014-11-16 23:37:29,065]Master[('animesh-AO532h', 22773)]: Caught exception while waiting for events: RuntimeError('maximum recursion depth exceeded',)
+[2014-11-16 23:38:17,872]Master[('animesh-AO532h', 39263)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 26296)from bankNO: 1
+[2014-11-16 23:38:17,929]Master[('animesh-AO532h', 39263)]: replica1
+[2014-11-16 23:46:27,897]Master[('animesh-AO532h', 39263)]: chain Extension msg received from new server('animesh-AO532h', 30216)
+[2014-11-16 23:46:27,934]Master[('animesh-AO532h', 39263)]: chain Extension msg received from new server('animesh-AO532h', 25763)
+[2014-11-16 23:46:27,982]Master[('animesh-AO532h', 39263)]: chain Extension msg received from new server('animesh-AO532h', 22870)
+[2014-11-16 23:46:28,014]Master[('animesh-AO532h', 39263)]: chain Extension completes,new tail added:('animesh-AO532h', 30216)
+[2014-11-16 23:46:28,035]Master[('animesh-AO532h', 39263)]: chain Extension msg received from new server('animesh-AO532h', 12645)
+[2014-11-16 23:46:28,043]Master[('animesh-AO532h', 39263)]: chain Extension msg received from new server('animesh-AO532h', 14184)
+[2014-11-16 23:46:28,052]Master[('animesh-AO532h', 39263)]: chain Extension msg received from new server('animesh-AO532h', 13308)
+[2014-11-16 23:46:28,061]Master[('animesh-AO532h', 39263)]: chain Extension completes,new tail added:('animesh-AO532h', 25763)
+[2014-11-16 23:46:28,094]Master[('animesh-AO532h', 39263)]: chain Extension completes,new tail added:('animesh-AO532h', 22870)
+[2014-11-16 23:46:28,112]Master[('animesh-AO532h', 39263)]: chain Extension completes,new tail added:('animesh-AO532h', 12645)
+[2014-11-16 23:46:28,142]Master[('animesh-AO532h', 39263)]: chain Extension completes,new tail added:('animesh-AO532h', 14184)
+[2014-11-16 23:46:28,197]Master[('animesh-AO532h', 39263)]: chain Extension completes,new tail added:('animesh-AO532h', 13308)
+[2014-11-17 00:49:53,852]Master[('animesh-AO532h', 16754)]: chain Extension msg received from new server('animesh-AO532h', 17253)
+[2014-11-17 00:54:45,687]Master[('animesh-AO532h', 30775)]: chain Extension msg received from new server('animesh-AO532h', 29194)
+[2014-11-17 00:56:18,882]Master[('animesh-AO532h', 33111)]: chain Extension msg received from new server('animesh-AO532h', 39876)
+[2014-11-17 00:56:25,849]Master[('animesh-AO532h', 33111)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 25097)from bankNO: 0
+[2014-11-17 00:56:25,899]Master[('animesh-AO532h', 33111)]: sync next received from:('animesh-AO532h', 20820)
+[2014-11-17 00:56:25,928]Master[('animesh-AO532h', 33111)]: sync next received from:('animesh-AO532h', 20820)
+[2014-11-17 01:00:28,184]Master[('animesh-AO532h', 20263)]: chain Extension msg received from new server('animesh-AO532h', 31205)
+[2014-11-17 01:00:35,172]Master[('animesh-AO532h', 20263)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 27815)from bankNO: 0
+[2014-11-17 01:00:35,202]Master[('animesh-AO532h', 20263)]: sync next received from:('animesh-AO532h', 31197)
+[2014-11-17 01:00:35,233]Master[('animesh-AO532h', 20263)]: sync next received from:('animesh-AO532h', 31197)
+[2014-11-17 01:01:58,087]Master[('animesh-AO532h', 39531)]: chain Extension msg received from new server('animesh-AO532h', 24680)
+[2014-11-17 01:02:05,076]Master[('animesh-AO532h', 39531)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 38152)from bankNO: 0
+[2014-11-17 01:02:05,125]Master[('animesh-AO532h', 39531)]: sync next received from:('animesh-AO532h', 37125)
+[2014-11-17 01:02:05,137]Master[('animesh-AO532h', 39531)]: sync next received from:('animesh-AO532h', 37125)
+[2014-11-17 01:02:57,184]Master[('animesh-AO532h', 15367)]: chain Extension msg received from new server('animesh-AO532h', 18085)
+[2014-11-17 01:03:04,157]Master[('animesh-AO532h', 15367)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 25693)from bankNO: 0
+[2014-11-17 01:03:04,217]Master[('animesh-AO532h', 15367)]: sync next received from:('animesh-AO532h', 25749)
+[2014-11-17 01:03:04,232]Master[('animesh-AO532h', 15367)]: sync next received from:('animesh-AO532h', 25749)
+[2014-11-17 01:05:07,363]Master[('animesh-AO532h', 24021)]: chain Extension msg received from new server('animesh-AO532h', 33126)
+[2014-11-17 01:05:14,318]Master[('animesh-AO532h', 24021)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 18195)from bankNO: 0
+[2014-11-17 01:07:11,328]Master[('animesh-AO532h', 30094)]: chain Extension msg received from new server('animesh-AO532h', 25029)
+[2014-11-17 01:07:18,316]Master[('animesh-AO532h', 30094)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 34256)from bankNO: 0
+[2014-11-17 01:10:08,885]Master[('animesh-AO532h', 10294)]: chain Extension msg received from new server('animesh-AO532h', 33738)
+[2014-11-17 01:10:15,875]Master[('animesh-AO532h', 10294)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 16077)from bankNO: 0
+[2014-11-17 01:12:34,406]Master[('animesh-AO532h', 19222)]: chain Extension msg received from new server('animesh-AO532h', 34764)
+[2014-11-17 01:12:41,373]Master[('animesh-AO532h', 19222)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 23987)from bankNO: 0
+[2014-11-18 19:38:51,024]Master[('animesh-AO532h', 29978)]: chain Extension msg received from new server('animesh-AO532h', 16918)
+[2014-11-18 19:41:01,103]Master[('animesh-AO532h', 15768)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 38221)from bankNO: 1
+[2014-11-18 19:41:01,114]Master[('animesh-AO532h', 15768)]: replica1
+[2014-11-18 19:42:41,596]Master[('animesh-AO532h', 34376)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 11156)from bankNO: 2
+[2014-11-18 19:42:41,610]Master[('animesh-AO532h', 34376)]: replica1
+[2014-11-18 19:50:29,527]Master[('animesh-AO532h', 24511)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 18266)from bankNO: 2
+[2014-11-18 19:50:29,537]Master[('animesh-AO532h', 24511)]: replica1
+[2014-11-18 19:54:08,589]Master[('animesh-AO532h', 16974)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 22553)from bankNO: 2
+[2014-11-18 19:54:08,604]Master[('animesh-AO532h', 16974)]: replica1
+[2014-11-18 19:57:10,067]Master[('animesh-AO532h', 28389)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 27756)from bankNO: 2
+[2014-11-18 19:57:10,078]Master[('animesh-AO532h', 28389)]: replica1
+[2014-11-18 20:14:25,945]Master[('animesh-AO532h', 37131)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 14810)from bankNO: 2
+[2014-11-18 20:14:25,955]Master[('animesh-AO532h', 37131)]: replica1
+[2014-11-18 20:16:48,382]Master[('animesh-AO532h', 30425)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 11452)from bankNO: 2
+[2014-11-18 20:16:48,398]Master[('animesh-AO532h', 30425)]: replica1
+[2014-11-18 20:18:18,173]Master[('animesh-AO532h', 36936)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 24601)from bankNO: 2
+[2014-11-18 20:18:18,183]Master[('animesh-AO532h', 36936)]: replica1
+[2014-11-18 20:30:28,489]Master[('animesh-AO532h', 36190)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 33833)from bankNO: 2
+[2014-11-18 20:30:28,501]Master[('animesh-AO532h', 36190)]: replica1
+[2014-11-18 20:33:05,026]Master[('animesh-AO532h', 32176)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 24421)from bankNO: 2
+[2014-11-18 20:33:05,038]Master[('animesh-AO532h', 32176)]: replica1
+[2014-11-18 20:34:15,302]Master[('animesh-AO532h', 37060)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 10725)from bankNO: 2
+[2014-11-18 20:34:15,313]Master[('animesh-AO532h', 37060)]: replica1

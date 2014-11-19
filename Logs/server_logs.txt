@@ -644,3 +644,422 @@
 [2014-11-16 21:38:13,706]Server[('animesh-AO532h', 23999)]: sending ack to remove old update: 5001|2|1001 from : replica1
 [2014-11-16 21:38:13,712]Server[('animesh-AO532h', 31847)]: sending ack to remove old update: 5001|2|1001 from : head
 [2014-11-16 21:38:13,735]Server[('animesh-AO532h', 22694)]: sending ack to remove old update: 5001|2|1001 from : head
+[2014-11-16 23:28:25,973]Server[('animesh-AO532h', 22140)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 35633)
+[2014-11-16 23:28:26,001]Server[('animesh-AO532h', 32929)]: Withdraw request ..sending to client from: tail
+[2014-11-16 23:28:26,021]Server[('animesh-AO532h', 20908)]: 
+	Withdraw:server crashed just after sending req. no:1
+[2014-11-16 23:28:26,054]Server[('animesh-AO532h', 22140)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-16 23:28:26,080]Server[('animesh-AO532h', 32929)]: sending ack to remove old update: 7001|1|9001 from : tail
+[2014-11-16 23:28:26,090]Server[('animesh-AO532h', 29301)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-16 23:28:26,101]Server[('animesh-AO532h', 20908)]: 
+	Deposit: server crashed just after sending req. no:1
+[2014-11-16 23:28:26,096]Server[('animesh-AO532h', 10903)]: sending ack to remove old update: 7001|1|9001 from : replica1
+[2014-11-16 23:28:26,094]Server[('animesh-AO532h', 10073)]: Transfer from request sent to next server from: head
+[2014-11-16 23:28:26,163]Server[('animesh-AO532h', 10073)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-16 23:28:26,171]Server[('animesh-AO532h', 29301)]: Transfer from request sent to next server from: replica1
+[2014-11-16 23:28:26,197]Server[('animesh-AO532h', 22140)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-16 23:28:26,269]Server[('animesh-AO532h', 20908)]: 
+	Transfer from:server crashed just after sending req. no:1
+[2014-11-16 23:32:40,549]Server[('animesh-AO532h', 14952)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 13430)
+[2014-11-16 23:32:40,642]Server[('animesh-AO532h', 31202)]: Withdraw request ..sending to client from: tail
+[2014-11-16 23:32:40,667]Server[('animesh-AO532h', 14952)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-16 23:32:40,701]Server[('animesh-AO532h', 31202)]: sending ack to remove old update: 7001|1|9001 from : tail
+[2014-11-16 23:32:40,682]Server[('animesh-AO532h', 10010)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-16 23:32:40,702]Server[('animesh-AO532h', 31737)]: Transfer from request sent to next server from: head
+[2014-11-16 23:32:40,658]Server[('animesh-AO532h', 25185)]: 
+	Withdraw:server crashed just after sending req. no:1
+[2014-11-16 23:32:40,728]Server[('animesh-AO532h', 36130)]: sending ack to remove old update: 7001|1|9001 from : replica1
+[2014-11-16 23:32:40,829]Server[('animesh-AO532h', 25185)]: 
+	Deposit: server crashed just after sending req. no:1
+[2014-11-16 23:32:40,814]Server[('animesh-AO532h', 31737)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-16 23:32:40,836]Server[('animesh-AO532h', 10010)]: Transfer from request sent to next server from: replica1
+[2014-11-16 23:32:40,866]Server[('animesh-AO532h', 14952)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-16 23:35:48,751]Server[('animesh-AO532h', 12926)]: Withdraw request ..sending to client from: tail
+[2014-11-16 23:35:48,785]Server[('animesh-AO532h', 30416)]: 
+	Withdraw:server crashed just after sending req. no:1
+[2014-11-16 23:35:48,815]Server[('animesh-AO532h', 29987)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 21193)
+[2014-11-16 23:35:48,850]Server[('animesh-AO532h', 12926)]: sending ack to remove old update: 7001|1|9001 from : tail
+[2014-11-16 23:35:48,879]Server[('animesh-AO532h', 14570)]: sending ack to remove old update: 7001|1|9001 from : replica1
+[2014-11-16 23:35:48,885]Server[('animesh-AO532h', 29987)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-16 23:35:48,887]Server[('animesh-AO532h', 37227)]: Transfer from request sent to next server from: head
+[2014-11-16 23:35:48,892]Server[('animesh-AO532h', 30416)]: 
+	Deposit: server crashed just after sending req. no:1
+[2014-11-16 23:35:48,933]Server[('animesh-AO532h', 23868)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-16 23:35:48,946]Server[('animesh-AO532h', 37227)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-16 23:35:48,979]Server[('animesh-AO532h', 23868)]: Transfer from request sent to next server from: replica1
+[2014-11-16 23:35:48,997]Server[('animesh-AO532h', 29987)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-16 23:36:40,760]Server[('animesh-AO532h', 32611)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 18493)
+[2014-11-16 23:36:40,893]Server[('animesh-AO532h', 10531)]: Withdraw request ..sending to client from: tail
+[2014-11-16 23:36:40,904]Server[('animesh-AO532h', 32611)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-16 23:36:40,963]Server[('animesh-AO532h', 26721)]: 
+	Withdraw:server crashed just after sending req. no:1
+[2014-11-16 23:36:40,980]Server[('animesh-AO532h', 10531)]: sending ack to remove old update: 7001|1|9001 from : tail
+[2014-11-16 23:36:40,970]Server[('animesh-AO532h', 24698)]: Transfer from request sent to next server from: head
+[2014-11-16 23:36:41,024]Server[('animesh-AO532h', 23767)]: sending ack to remove old update: 7001|1|9001 from : replica1
+[2014-11-16 23:36:41,032]Server[('animesh-AO532h', 26721)]: 
+	Deposit: server crashed just after sending req. no:1
+[2014-11-16 23:36:41,085]Server[('animesh-AO532h', 35994)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-16 23:36:41,101]Server[('animesh-AO532h', 24698)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-16 23:36:41,134]Server[('animesh-AO532h', 35994)]: Transfer from request sent to next server from: replica1
+[2014-11-16 23:36:41,150]Server[('animesh-AO532h', 32611)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-16 23:38:07,929]Server[('animesh-AO532h', 38334)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 36723)
+[2014-11-16 23:38:08,004]Server[('animesh-AO532h', 38334)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-16 23:38:08,019]Server[('animesh-AO532h', 29413)]: Withdraw request ..sending to client from: tail
+[2014-11-16 23:38:08,043]Server[('animesh-AO532h', 26296)]: 
+	Withdraw:server crashed just after sending req. no:1
+[2014-11-16 23:38:08,038]Server[('animesh-AO532h', 13811)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-16 23:38:08,055]Server[('animesh-AO532h', 15201)]: Transfer from request sent to next server from: head
+[2014-11-16 23:38:08,058]Server[('animesh-AO532h', 29413)]: sending ack to remove old update: 7001|1|9001 from : tail
+[2014-11-16 23:38:08,084]Server[('animesh-AO532h', 16344)]: sending ack to remove old update: 7001|1|9001 from : replica1
+[2014-11-16 23:38:08,093]Server[('animesh-AO532h', 26296)]: 
+	Deposit: server crashed just after sending req. no:1
+[2014-11-16 23:38:08,129]Server[('animesh-AO532h', 15201)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-16 23:38:08,140]Server[('animesh-AO532h', 13811)]: Transfer from request sent to next server from: replica1
+[2014-11-16 23:38:08,156]Server[('animesh-AO532h', 38334)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-16 23:46:27,918]Server[('animesh-AO532h', 30216)]: i am new tail,informing master
+[2014-11-16 23:46:27,953]Server[('animesh-AO532h', 25763)]: i am new tail,informing master
+[2014-11-16 23:46:28,010]Server[('animesh-AO532h', 22870)]: i am new tail,informing master
+[2014-11-16 23:46:28,074]Server[('animesh-AO532h', 12645)]: i am new tail,informing master
+[2014-11-16 23:46:28,121]Server[('animesh-AO532h', 14184)]: i am new tail,informing master
+[2014-11-16 23:46:28,175]Server[('animesh-AO532h', 13308)]: i am new tail,informing master
+[2014-11-17 00:49:50,907]Server[('animesh-AO532h', 28419)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 00:49:50,920]Server[('animesh-AO532h', 17685)]: Transfer from request sent to next server from: head
+[2014-11-17 00:49:50,942]Server[('animesh-AO532h', 36532)]: Transfer from request sent to next server from: replica1
+[2014-11-17 00:49:50,961]Server[('animesh-AO532h', 28419)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 00:54:42,726]Server[('animesh-AO532h', 35212)]: Transfer from request sent to next server from: head
+[2014-11-17 00:54:42,740]Server[('animesh-AO532h', 34538)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 00:54:42,756]Server[('animesh-AO532h', 30979)]: Transfer from request sent to next server from: replica1
+[2014-11-17 00:54:42,767]Server[('animesh-AO532h', 34538)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 00:56:15,923]Server[('animesh-AO532h', 25097)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 00:56:15,982]Server[('animesh-AO532h', 31223)]: Transfer from request sent to next server from: head
+[2014-11-17 00:56:16,007]Server[('animesh-AO532h', 20820)]: Transfer from request sent to next server from: replica1
+[2014-11-17 00:56:16,054]Server[('animesh-AO532h', 25097)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 00:56:25,875]Server[('animesh-AO532h', 20820)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 00:56:25,901]Server[('animesh-AO532h', 20820)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-17 00:56:25,961]Server[('animesh-AO532h', 20820)]: Duplicate Deposit request...: tail
+[2014-11-17 00:56:25,962]Server[('animesh-AO532h', 20820)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 34492)
+[2014-11-17 00:56:25,976]Server[('animesh-AO532h', 20820)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-17 00:56:25,982]Server[('animesh-AO532h', 31223)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-17 01:00:25,217]Server[('animesh-AO532h', 27815)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 01:00:25,224]Server[('animesh-AO532h', 25001)]: Transfer from request sent to next server from: head
+[2014-11-17 01:00:25,244]Server[('animesh-AO532h', 31197)]: Transfer from request sent to next server from: replica1
+[2014-11-17 01:00:25,251]Server[('animesh-AO532h', 27815)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 01:00:35,198]Server[('animesh-AO532h', 31197)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 01:00:35,215]Server[('animesh-AO532h', 31197)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-17 01:00:35,242]Server[('animesh-AO532h', 31197)]: Duplicate Deposit request...: tail
+[2014-11-17 01:00:35,243]Server[('animesh-AO532h', 31197)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 19955)
+[2014-11-17 01:00:35,248]Server[('animesh-AO532h', 31197)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-17 01:00:35,266]Server[('animesh-AO532h', 25001)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-17 01:01:55,146]Server[('animesh-AO532h', 22977)]: Transfer from request sent to next server from: head
+[2014-11-17 01:01:55,157]Server[('animesh-AO532h', 38152)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 01:01:55,323]Server[('animesh-AO532h', 37125)]: Transfer from request sent to next server from: replica1
+[2014-11-17 01:01:55,331]Server[('animesh-AO532h', 38152)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 01:02:05,095]Server[('animesh-AO532h', 37125)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-17 01:02:05,110]Server[('animesh-AO532h', 37125)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 01:02:05,142]Server[('animesh-AO532h', 37125)]: Duplicate Deposit request...: tail
+[2014-11-17 01:02:05,159]Server[('animesh-AO532h', 37125)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 24595)
+[2014-11-17 01:02:05,168]Server[('animesh-AO532h', 37125)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-17 01:02:05,190]Server[('animesh-AO532h', 22977)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-17 01:02:54,312]Server[('animesh-AO532h', 35253)]: Transfer from request sent to next server from: head
+[2014-11-17 01:02:54,338]Server[('animesh-AO532h', 25693)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 01:02:54,399]Server[('animesh-AO532h', 25749)]: Transfer from request sent to next server from: replica1
+[2014-11-17 01:02:54,434]Server[('animesh-AO532h', 25693)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 01:03:04,186]Server[('animesh-AO532h', 25749)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 01:03:04,202]Server[('animesh-AO532h', 25749)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-17 01:03:04,267]Server[('animesh-AO532h', 25749)]: Duplicate Deposit request...: tail
+[2014-11-17 01:03:04,271]Server[('animesh-AO532h', 25749)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 23218)
+[2014-11-17 01:03:04,289]Server[('animesh-AO532h', 25749)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-17 01:03:04,295]Server[('animesh-AO532h', 35253)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-17 01:05:04,451]Server[('animesh-AO532h', 18195)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 01:05:04,488]Server[('animesh-AO532h', 31937)]: Transfer from request sent to next server from: head
+[2014-11-17 01:05:04,532]Server[('animesh-AO532h', 22305)]: Transfer from request sent to next server from: replica1
+[2014-11-17 01:05:04,570]Server[('animesh-AO532h', 18195)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 01:05:14,356]Server[('animesh-AO532h', 22305)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 01:05:14,362]Server[('animesh-AO532h', 22305)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-17 01:07:08,361]Server[('animesh-AO532h', 34256)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 01:07:08,370]Server[('animesh-AO532h', 17087)]: Transfer from request sent to next server from: head
+[2014-11-17 01:07:08,380]Server[('animesh-AO532h', 24511)]: Transfer from request sent to next server from: replica1
+[2014-11-17 01:07:08,392]Server[('animesh-AO532h', 34256)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 01:07:18,341]Server[('animesh-AO532h', 24511)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 01:07:18,362]Server[('animesh-AO532h', 24511)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-17 01:10:05,917]Server[('animesh-AO532h', 16077)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 01:10:06,072]Server[('animesh-AO532h', 28731)]: Transfer from request sent to next server from: head
+[2014-11-17 01:10:06,092]Server[('animesh-AO532h', 19509)]: Transfer from request sent to next server from: replica1
+[2014-11-17 01:10:06,119]Server[('animesh-AO532h', 16077)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 01:10:15,888]Server[('animesh-AO532h', 19509)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 01:10:15,926]Server[('animesh-AO532h', 19509)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-17 01:12:31,449]Server[('animesh-AO532h', 23987)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-17 01:12:31,461]Server[('animesh-AO532h', 23825)]: Transfer from request sent to next server from: head
+[2014-11-17 01:12:31,473]Server[('animesh-AO532h', 13994)]: Transfer from request sent to next server from: replica1
+[2014-11-17 01:12:31,482]Server[('animesh-AO532h', 23987)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-17 01:12:41,400]Server[('animesh-AO532h', 13994)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-17 01:12:41,422]Server[('animesh-AO532h', 13994)]: 
+ inside sync_next:5001|1|1001
+
+[2014-11-18 19:38:48,059]Server[('animesh-AO532h', 20962)]: 
+	Deposit : server crashed after receiving req. no:1
+[2014-11-18 19:38:48,072]Server[('animesh-AO532h', 12031)]: Transfer from request sent to next server from: head
+[2014-11-18 19:38:48,100]Server[('animesh-AO532h', 13833)]: Transfer from request sent to next server from: replica1
+[2014-11-18 19:38:48,106]Server[('animesh-AO532h', 20962)]: 
+	Transfer from:server crashed after receiving req. no:2
+[2014-11-18 19:40:51,155]Server[('animesh-AO532h', 12721)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 14137)
+[2014-11-18 19:40:51,149]Server[('animesh-AO532h', 38221)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 19:40:51,171]Server[('animesh-AO532h', 12721)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 19:40:51,162]Server[('animesh-AO532h', 35340)]: Transfer from request sent to next server from: head
+[2014-11-18 19:40:51,188]Server[('animesh-AO532h', 32690)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 19:40:51,201]Server[('animesh-AO532h', 35340)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 19:40:51,205]Server[('animesh-AO532h', 38221)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 19:40:51,210]Server[('animesh-AO532h', 32690)]: Transfer from request sent to next server from: replica1
+[2014-11-18 19:40:51,218]Server[('animesh-AO532h', 12721)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 19:40:51,241]Server[('animesh-AO532h', 38221)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 19:42:31,636]Server[('animesh-AO532h', 23310)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 37338)
+[2014-11-18 19:42:31,664]Server[('animesh-AO532h', 23310)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 19:42:31,661]Server[('animesh-AO532h', 11156)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 19:42:31,689]Server[('animesh-AO532h', 38639)]: Transfer from request sent to next server from: head
+[2014-11-18 19:42:31,679]Server[('animesh-AO532h', 29684)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 19:42:31,707]Server[('animesh-AO532h', 11156)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 19:42:31,718]Server[('animesh-AO532h', 29684)]: Transfer from request sent to next server from: replica1
+[2014-11-18 19:42:31,713]Server[('animesh-AO532h', 38639)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 19:42:31,728]Server[('animesh-AO532h', 23310)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 19:42:31,759]Server[('animesh-AO532h', 11156)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 19:50:08,612]Server[('animesh-AO532h', 13896)]: Transfer from request sent to next server from: head
+[2014-11-18 19:50:08,649]Server[('animesh-AO532h', 18000)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 22280)
+[2014-11-18 19:50:08,660]Server[('animesh-AO532h', 18000)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 19:50:08,671]Server[('animesh-AO532h', 30760)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 19:50:08,684]Server[('animesh-AO532h', 30760)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 19:50:08,686]Server[('animesh-AO532h', 10483)]: Transfer from request sent to next server from: replica1
+[2014-11-18 19:50:08,697]Server[('animesh-AO532h', 18000)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 19:50:08,722]Server[('animesh-AO532h', 10483)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 19:50:08,723]Server[('animesh-AO532h', 30760)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 19:50:08,741]Server[('animesh-AO532h', 13896)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 19:50:19,573]Server[('animesh-AO532h', 18266)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 19:50:19,576]Server[('animesh-AO532h', 30034)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 23791)
+[2014-11-18 19:50:19,600]Server[('animesh-AO532h', 18266)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 19:50:19,592]Server[('animesh-AO532h', 30939)]: Transfer from request sent to next server from: head
+[2014-11-18 19:50:19,604]Server[('animesh-AO532h', 30034)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 19:50:19,620]Server[('animesh-AO532h', 33139)]: Transfer from request sent to next server from: replica1
+[2014-11-18 19:50:19,632]Server[('animesh-AO532h', 30034)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 19:50:19,636]Server[('animesh-AO532h', 33139)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 19:50:19,651]Server[('animesh-AO532h', 30939)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 19:50:19,666]Server[('animesh-AO532h', 18266)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 19:53:58,626]Server[('animesh-AO532h', 22553)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 19:53:58,632]Server[('animesh-AO532h', 22553)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 19:53:58,650]Server[('animesh-AO532h', 20482)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 27194)
+[2014-11-18 19:53:58,660]Server[('animesh-AO532h', 20482)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 19:53:58,667]Server[('animesh-AO532h', 14051)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 19:53:58,670]Server[('animesh-AO532h', 23168)]: Transfer from request sent to next server from: head
+[2014-11-18 19:53:58,696]Server[('animesh-AO532h', 23168)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 19:53:58,696]Server[('animesh-AO532h', 14051)]: Transfer from request sent to next server from: replica1
+[2014-11-18 19:53:58,712]Server[('animesh-AO532h', 20482)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 19:53:58,729]Server[('animesh-AO532h', 22553)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 19:57:00,104]Server[('animesh-AO532h', 18924)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 30193)
+[2014-11-18 19:57:00,135]Server[('animesh-AO532h', 18924)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 19:57:00,140]Server[('animesh-AO532h', 27756)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 19:57:00,161]Server[('animesh-AO532h', 27756)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 19:57:00,147]Server[('animesh-AO532h', 32786)]: Transfer from request sent to next server from: head
+[2014-11-18 19:57:00,162]Server[('animesh-AO532h', 19899)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 19:57:00,174]Server[('animesh-AO532h', 32786)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 19:57:00,177]Server[('animesh-AO532h', 19899)]: Transfer from request sent to next server from: replica1
+[2014-11-18 19:57:00,192]Server[('animesh-AO532h', 18924)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 19:57:00,219]Server[('animesh-AO532h', 27756)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:14:15,984]Server[('animesh-AO532h', 14810)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:14:16,013]Server[('animesh-AO532h', 31190)]: Transfer from request sent to next server from: head
+[2014-11-18 20:14:16,021]Server[('animesh-AO532h', 14810)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:14:16,012]Server[('animesh-AO532h', 36658)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 38680)
+[2014-11-18 20:14:16,025]Server[('animesh-AO532h', 26842)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:14:16,041]Server[('animesh-AO532h', 36658)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:14:16,051]Server[('animesh-AO532h', 26842)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:14:16,053]Server[('animesh-AO532h', 36658)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:14:16,069]Server[('animesh-AO532h', 31190)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:14:16,084]Server[('animesh-AO532h', 14810)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:16:38,422]Server[('animesh-AO532h', 11452)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:16:38,440]Server[('animesh-AO532h', 31300)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 38444)
+[2014-11-18 20:16:38,448]Server[('animesh-AO532h', 11452)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:16:38,459]Server[('animesh-AO532h', 37191)]: Transfer from request sent to next server from: head
+[2014-11-18 20:16:38,461]Server[('animesh-AO532h', 31300)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:16:38,478]Server[('animesh-AO532h', 28220)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:16:38,486]Server[('animesh-AO532h', 31300)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:16:38,513]Server[('animesh-AO532h', 11452)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:16:38,512]Server[('animesh-AO532h', 28220)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:16:38,520]Server[('animesh-AO532h', 37191)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:18:08,219]Server[('animesh-AO532h', 10285)]: Transfer from request sent to next server from: head
+[2014-11-18 20:18:08,235]Server[('animesh-AO532h', 10408)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 38306)
+[2014-11-18 20:18:08,243]Server[('animesh-AO532h', 24601)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:18:08,252]Server[('animesh-AO532h', 10408)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:18:08,266]Server[('animesh-AO532h', 24601)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:18:08,273]Server[('animesh-AO532h', 32958)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:18:08,281]Server[('animesh-AO532h', 10408)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:18:08,282]Server[('animesh-AO532h', 32958)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:18:08,307]Server[('animesh-AO532h', 10285)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:18:08,308]Server[('animesh-AO532h', 24601)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:20:29,531]Server[('animesh-AO532h', 20787)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:20:29,544]Server[('animesh-AO532h', 20787)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:20:29,575]Server[('animesh-AO532h', 10020)]: Transfer from request sent to next server from: head
+[2014-11-18 20:20:29,581]Server[('animesh-AO532h', 38653)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 36901)
+[2014-11-18 20:20:29,598]Server[('animesh-AO532h', 20542)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:20:29,607]Server[('animesh-AO532h', 38653)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:20:29,618]Server[('animesh-AO532h', 38653)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:20:29,614]Server[('animesh-AO532h', 20542)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:20:29,638]Server[('animesh-AO532h', 10020)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:20:29,648]Server[('animesh-AO532h', 20787)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:29:35,823]Server[('animesh-AO532h', 11459)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:29:35,837]Server[('animesh-AO532h', 11459)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:29:35,851]Server[('animesh-AO532h', 32667)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 30366)
+[2014-11-18 20:29:35,870]Server[('animesh-AO532h', 32667)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:29:35,876]Server[('animesh-AO532h', 28441)]: Transfer from request sent to next server from: head
+[2014-11-18 20:29:35,888]Server[('animesh-AO532h', 28886)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:29:35,902]Server[('animesh-AO532h', 28441)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:29:35,902]Server[('animesh-AO532h', 28886)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:29:35,916]Server[('animesh-AO532h', 32667)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:29:35,942]Server[('animesh-AO532h', 11459)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:29:59,229]Server[('animesh-AO532h', 19439)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:29:59,226]Server[('animesh-AO532h', 13769)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 25049)
+[2014-11-18 20:29:59,257]Server[('animesh-AO532h', 16093)]: Transfer from request sent to next server from: head
+[2014-11-18 20:29:59,259]Server[('animesh-AO532h', 19439)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:29:59,262]Server[('animesh-AO532h', 13769)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:29:59,285]Server[('animesh-AO532h', 22506)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:29:59,295]Server[('animesh-AO532h', 22506)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:29:59,306]Server[('animesh-AO532h', 16093)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:29:59,311]Server[('animesh-AO532h', 13769)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:29:59,337]Server[('animesh-AO532h', 19439)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:30:05,852]Server[('animesh-AO532h', 17415)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:30:05,866]Server[('animesh-AO532h', 17415)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:30:05,891]Server[('animesh-AO532h', 35272)]: Transfer from request sent to next server from: head
+[2014-11-18 20:30:05,910]Server[('animesh-AO532h', 32518)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:30:05,899]Server[('animesh-AO532h', 18529)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 37485)
+[2014-11-18 20:30:05,920]Server[('animesh-AO532h', 18529)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:30:05,927]Server[('animesh-AO532h', 32518)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:30:05,934]Server[('animesh-AO532h', 35272)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:30:05,943]Server[('animesh-AO532h', 18529)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:30:05,970]Server[('animesh-AO532h', 17415)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:30:18,528]Server[('animesh-AO532h', 33833)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:30:18,546]Server[('animesh-AO532h', 33833)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:30:18,561]Server[('animesh-AO532h', 29609)]: Transfer from request sent to next server from: head
+[2014-11-18 20:30:18,569]Server[('animesh-AO532h', 24089)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 30797)
+[2014-11-18 20:30:18,578]Server[('animesh-AO532h', 24089)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:30:18,592]Server[('animesh-AO532h', 16783)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:30:18,600]Server[('animesh-AO532h', 24089)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:30:18,619]Server[('animesh-AO532h', 16783)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:30:18,626]Server[('animesh-AO532h', 29609)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:30:18,630]Server[('animesh-AO532h', 33833)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:32:55,057]Server[('animesh-AO532h', 24421)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:32:55,069]Server[('animesh-AO532h', 24421)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:32:55,096]Server[('animesh-AO532h', 23521)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 34622)
+[2014-11-18 20:32:55,106]Server[('animesh-AO532h', 23521)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:32:55,113]Server[('animesh-AO532h', 31671)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:32:55,106]Server[('animesh-AO532h', 13733)]: Transfer from request sent to next server from: head
+[2014-11-18 20:32:55,129]Server[('animesh-AO532h', 31671)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:32:55,137]Server[('animesh-AO532h', 23521)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:32:55,137]Server[('animesh-AO532h', 13733)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:32:55,166]Server[('animesh-AO532h', 24421)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:34:05,351]Server[('animesh-AO532h', 12608)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 25469)
+[2014-11-18 20:34:05,354]Server[('animesh-AO532h', 10725)]: 
+	Withdraw:server crashed after receiving req. no:1
+[2014-11-18 20:34:05,375]Server[('animesh-AO532h', 10725)]: 
+	Deposit : server crashed after receiving req. no:2
+[2014-11-18 20:34:05,378]Server[('animesh-AO532h', 12608)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-18 20:34:05,393]Server[('animesh-AO532h', 16222)]: sending ack to remove old update: 5001|1|1001 from : replica1
+[2014-11-18 20:34:05,397]Server[('animesh-AO532h', 17892)]: Transfer from request sent to next server from: head
+[2014-11-18 20:34:05,410]Server[('animesh-AO532h', 16222)]: Transfer from request sent to next server from: replica1
+[2014-11-18 20:34:05,412]Server[('animesh-AO532h', 17892)]: sending ack to remove old update: 5001|1|1001 from : head
+[2014-11-18 20:34:05,417]Server[('animesh-AO532h', 12608)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:34:05,443]Server[('animesh-AO532h', 10725)]: 
+	Transfer from:server crashed after receiving req. no:3
+[2014-11-18 20:34:15,398]Server[('animesh-AO532h', 18664)]: Transfer to request sent to next server from: replica1
+[2014-11-18 20:34:15,405]Server[('animesh-AO532h', 39714)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-18 20:34:15,425]Server[('animesh-AO532h', 18664)]: sending ack to remove old update: 5001|2|1001 from : replica1
