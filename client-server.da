@@ -29,9 +29,6 @@ class Master(process):
         self.removeIndex = []
         self.totalClientList = list(totalClientList)
         self.totalTail = []
-        #self.crashTail = tail
-        #self.newTail = tail
-        #self.flag = 1
         self.TIMEOUT = timeout
         self.transfer_reqHead = []
         self.chain_exttail = []
@@ -123,37 +120,19 @@ class Master(process):
             print("calling pendng req.:"+str(transfer_reqHead))
             pending_req()
           else:pass
-            print("no crash ,value of transfer req head: "+str(transfer_reqHead))
-            #del transfer_reqHead[:]
-            #del chain_exttail[:]  
-
+            #print("no crash ,value of transfer req head: "+str(transfer_reqHead))
+            
           
     # Add in queue for all server pings- "I am Alive"
     def receive(msg=('I am alive'), from_=server):
         #output("\n\tI am alive-server: " +str(server)+"\n")
         q.add((0,server))
-        """if(crashTail != tail):
-          if(flag ==0):
-            output("removed crash tail,now temp tail: "+str(tail))
-            role = 'replica'+str(len(servList)-1)
-            send(('chainUpdate',role,newTail), to=tail)
-            flag = 1"""
-        
-
+       
     def receive(msg=('Client init'), from_=client):pass
-        #totalClientList.append(client)
         #output("Master: init msg received from client: "+str(client))
 
     def receive(msg=('chainExtention',bankNo), from_=newTail):
-        #servList = []
-        #g_sync = 0
         output("chain Extension msg received from new server"+str(newTail))
-        
-        """while(g_sync != 1):
-          if(await(False)):pass
-          elif timeout(2):
-           output("waiting....")
-           g_sync = 1"""
         servList = totalServList[bankNo]
         chainLength = len(servList)
         l_tail = servList[chainLength - 1] 
@@ -163,29 +142,19 @@ class Master(process):
         
     def my_sleep(bankNo,newTail):
 
-        
-          servList = totalServList[bankNo]
-          chainLength = len(servList)
-          l_tail = servList[chainLength - 1] 
-          #imp todo chk here..... what if l_tail is already crashed wait for master to recover from this.....
-          
-          role = 'replica'+str(chainLength -1)
-          #output("current tail"+str(l_tail))
-          #crashTail = l_tail
-          #l_newTail = newTail
-          #l_flag =0
-          #if await(False):pass
-          #elif timeout(6*TIMEOUT):
-          #if(crashTail != tail):
-          send(('chainUpdate',role,newTail), to=l_tail)
+        servList = totalServList[bankNo]
+        chainLength = len(servList)
+        l_tail = servList[chainLength - 1] 
+        #imp todo chk here..... what if l_tail is already crashed wait for master to recover from this.....
+        role = 'replica'+str(chainLength -1)
+        #output("current tail"+str(l_tail))
+        send(('chainUpdate',role,newTail), to=l_tail)
 
     def receive(msg=('newTail',bankNo),from_=newTail):
         output("chain Extension completes,new tail added:"+str(newTail))
-        #servList = []
+        
         q.add((0,newTail))
         totalServList[bankNo].append(newTail) 
-        #tail = newTail
-        #crashTail = tail
         clientList = totalClientList[int(bankNo)]
         send(('tail',newTail), to=clientList)
 
@@ -204,8 +173,15 @@ class Master(process):
         sequenceNumber = tempList[4]
         accountNumber = tempList[5]
         amount = tempList[6]
-        send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=sendTo)
-        #output("\n\tclientid: " + str(clientId))
+        if (reqType == "Transfer from") or (reqType == "Transfer to"):
+          destBankNo = tempList[7]
+          destAccount = tempList[8]
+          print (str(destBankNo))
+          print (str(destAccount))
+          send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,destBankNo,destAccount), to=sendTo)
+        else:
+          send((reqType, clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount,), to=sendTo)
+        
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     def receive(msg=('destBank ID',destBankNo,srcBankNo), from_=servTail):
        
@@ -229,7 +205,6 @@ class Master(process):
           #print(type(servTail)) 
           send(('destBank id',destBank), to=servTail)
 
-        #l = []
         for item in chain_exttail:
           l = list(item.split())
           my_sleep(int(l[0]),int(l[1]))
@@ -332,7 +307,6 @@ class Server(process):
           if(next == None):
             sendTo = self.id
           #output("<<<<<<<check here...........sending to: "+ str(sendTo))
-          #print(str(type(sendTo)) + "value:" + str(sendTo))
           send(("sync next",tempList,sendTo,bankNo), to=master)
           
 
@@ -478,10 +452,8 @@ class Server(process):
              
              output("sending ack to remove old update: "+ str(reqID) + " from:" +str(role))
              Sent[reqID] = True
-             """print("\n\t Request Buffer at tail:........................")
-             for key,value in Sent.items():
-               print (key) 
-               print (value)""" 
+             #print("\n\t Request Buffer at tail:........................")
+            
              send(('ack',reqID), to=prev)           
           else:
              #output("Deposit sent to next server from: " + role)
@@ -555,10 +527,6 @@ class Server(process):
              send((outcome,'Withdraw', bankName, clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
              output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
              Sent[reqID] = True 
-             #print("\n\t Request Buffer at tail: ...............")
-             """for key,value in Sent.items():
-               print (key) 
-               print (value)"""
              send(('ack',reqID), to=prev)
           else:
              #output("Withdraw request sent to next server from: " + role)
@@ -573,20 +541,20 @@ class Server(process):
 
     #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
-    def receive(msg=('Transfer from', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount, destBank, destAccount), from_=client):
+    def receive(msg=('Transfer from', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount, destBankNo, destAccount), from_=client):
         self.clientId = clientId
         self.bankName = bankName
         self.clientNumber = clientNumber
         self.sequenceNumber = sequenceNumber
         self.accountNumber = accountNumber
         self.amount = amount
-        self.destBankNo = destBank
+        self.destBankNo = destBankNo
         self.destAccount = destAccount
-        
         self.reqType = 'Transfer'
-        self.receiveCount +=1
+        self.receiveCount += 1
         #crash if exceeds
         #output("\n\tcurrent receiveCount:" + str(receiveCount))
+        dupReq = 0
         if(sendCount >= maxSend or receiveCount >= maxReceive):
             crash = True
             if(sendCount >= maxSend):
@@ -595,7 +563,7 @@ class Server(process):
               output("\n\tTransfer from:server crashed after receiving req. no:" + str(receiveCount))                
         else:
           
-          transaction = 'Transfer from' + "|" + str(clientId)+ "|" + bankName + "|" + str(clientNumber) + "|" +  str(sequenceNumber) + "|" +  str(accountNumber) + "|" + str(amount) + str(destBankNo) + "|" + str(destAccount)
+          transaction = 'Transfer from' + "|" + str(clientId)+ "|" + bankName + "|" + str(clientNumber) + "|" +  str(sequenceNumber) + "|" +  str(accountNumber) + "|" + str(amount) + "|" +str(destBankNo) + "|" + str(destAccount)
           reqID = str(clientNumber)  + "|" + str(sequenceNumber) + "|" + str(accountNumber)
           #If the same transaction has already been processed, return the same reply
           #output("Withdraw processed124:" + str(processedRequestIDs)         
@@ -604,13 +572,14 @@ class Server(process):
              reply = processedTransactions[transaction]
              outcome, balance = reply.split('|')
              if (role == 'tail'):
-              output("Duplicate Transfer request sending same reply...")
-             #resend the same reply when done with processing
+                output("Duplicate Transfer request sending same reply...")
+                dupReq = 1
+             
           elif reqID in processedRequestIDs:
              #Different transaction with same request ID. InconsistentWithHistory
              self.balance = accountSummary[int(accountNumber)]
              outcome = 'InconsistentWithHistory'
-             #output("Withdraw processed .outcome:" + outcome)         
+             output("InconsistentWithHistory...")         
              
           else:
              if int(accountNumber) in accountSummary:
@@ -630,47 +599,53 @@ class Server(process):
              processedRequestIDs.append(reqID)
              
           if (role == 'tail'):
-             output("Transfer to request ..sending to another bank head from: " + role)         
-             send(('destBank ID',int(destBankNo),int(self.bankNo)), to=master)
-             #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
-             Sent[reqID] = False 
-             #print("\n\t Request Buffer at tail: ...............")
-             #send(('ack',reqID), to=prev)
+             if (outcome == 'InsufficientFunds') or (outcome == 'InconsistentWithHistory' or (dupReq == 1)):
+                send((outcome,'Transfer', int(destBankNo), clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
+                Sent[reqID] = True
+                #print("\n\t Request Buffer at tail: ...............")
+                send(('ack',reqID), to=prev)
+             else:
+                print (str(dupReq))
+                output("Transfer to request ..sending to another bank head from: " + role)         
+                send(('destBank ID',int(bankNo)+1,int(self.bankNo)), to=master)
+                Sent[reqID] = False
+
           else:
              output("Transfer from request sent to next server from: " + role)
              send(('Transfer from', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount, destBankNo, destAccount), to=next)
-             #set this reqID False until ack received from Tail or next server... 
-             Sent[reqID] = False         
-          
+             Sent[reqID] = False
+          #set this reqID False until ack received from Tail or next server... 
+                   
           sendCount +=1
           if(sendCount >= maxSend):
             crash = True
             output("\n\tTransfer from:server crashed just after sending req. no:" + str(sendCount)) 
 
-    def receive(msg=('Transfer to', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount, destBank, destAccount), from_=sourceBank):
+    def receive(msg=('Transfer to', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount, destBankNo, destAccount), from_=sourceBank):
         self.clientId = clientId
         self.bankName = bankName
         self.clientNumber = clientNumber
         self.sequenceNumber = sequenceNumber
         self.accountNumber = accountNumber
         self.amount = amount
-        self.destBankNo = destBank
+        self.destBankNo = destBankNo
         self.destAccount = destAccount
 
         
         self.reqType = 'Transfer'
         self.receiveCount +=1
+        dupReq = False
         #crash if exceeds
         #output("\n\tcurrent receiveCount:" + str(receiveCount))
         if(sendCount >= maxSend or receiveCount >= maxReceive):
             crash = True
             if(sendCount >= maxSend):
-                output("\n\tTransfer from:server crashed just after sending req. no:" + str(sendCount))
+                output("\n\tTransfer to:server crashed just after sending req. no:" + str(sendCount))
             else:
-              output("\n\tTransfer from:server crashed after receiving req. no:" + str(receiveCount))                
+              output("\n\tTransfer to:server crashed after receiving req. no:" + str(receiveCount))                
         else:
           
-          transaction = 'Transfer from' + "|" + str(clientId)+ "|" + bankName + "|" + str(clientNumber) + "|" +  str(sequenceNumber) + "|" +  str(accountNumber) + "|" + str(amount) + str(destBankNo) + "|" + str(destAccount)
+          transaction = 'Transfer to' + "|" + str(clientId)+ "|" + bankName + "|" + str(clientNumber) + "|" +  str(sequenceNumber) + "|" +  str(accountNumber) + "|" + str(amount) + "|" +str(destBankNo) + "|" + str(destAccount)
           reqID = str(clientNumber)  + "|" + str(sequenceNumber) + "|" + str(accountNumber)
           #If the same transaction has already been processed, return the same reply
           #output("Withdraw processed124:" + str(processedRequestIDs)         
@@ -679,8 +654,9 @@ class Server(process):
              reply = processedTransactions[transaction]
              outcome, balance = reply.split('|')
              if (role == 'tail'):
-              output("Duplicate Transfer request sending same reply...")
-             #resend the same reply when done with processing
+                dupReq = True
+                output("Duplicate Transfer request sending same reply...")
+                #resend the same reply when done with processing
           elif reqID in processedRequestIDs:
              #Different transaction with same request ID. InconsistentWithHistory
              self.balance = accountSummary[int(destAccount)]
@@ -703,7 +679,7 @@ class Server(process):
              
           if (role == 'tail'):
              output("Transfer to request ..sending to another bank head from: " + role)         
-             send((outcome,'Transfer', bankName, clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
+             send((outcome,'Transfer', int(bankNo)+1, clientNumber, sequenceNumber, accountNumber, balance,), to=clientId)
              #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
              Sent[reqID] = True
              #print("\n\t Request Buffer at tail: ...............")
@@ -714,13 +690,13 @@ class Server(process):
              #set this reqID False until ack received from Tail or next server... 
              Sent[reqID] = False  
              if role == 'head':
-              send(('ack',reqID), to=sourceBank)
+                send(('ack',reqID), to=sourceBank)
 
           
           sendCount +=1
           if(sendCount >= maxSend):
-            crash = True
-            output("\n\tTransfer to:server crashed just after sending req. no:" + str(sendCount)) 
+             crash = True
+             output("\n\tTransfer to:server crashed just after sending req. no:" + str(sendCount)) 
      
     def receive(msg=('destBank id',destBank), from_=master):
         send(('Transfer to', clientId, bankName, clientNumber, sequenceNumber, accountNumber, amount, destBankNo, destAccount), to=destBank)
@@ -793,11 +769,11 @@ class Client(process):
 
     def receive(msg=(outcome,requestType,bankName, clientNumber, sequenceNumber, accountNumber, balance,)):
         if requestType == 'GetBalance':
-           output("Request: " + str(requestType) + ", Outcome: " + outcome + ", Bank: " + bankName + ", ClientNumber: " + str(clientNumber) + ", SequenceNumber: " + str(sequenceNumber) + ", AccountNumber: " + str(accountNumber) + ", Balance: " + str(balance))
+           output("Request: " + str(requestType) + ", Outcome: " + outcome + ", Bank: " + str(bankName) + ", ClientNumber: " + str(clientNumber) + ", SequenceNumber: " + str(sequenceNumber) + ", AccountNumber: " + str(accountNumber) + ", Balance: " + str(balance))
         elif requestType == 'Transfer':
-           output("Request: " + str(requestType) + ", Outcome: " + outcome + ", From Bank: " + bankName + ", ClientNumber: " + str(clientNumber) + ", SequenceNumber: " + str(sequenceNumber) + ",From AccountNumber: " + str(accountNumber) + ", credit Balance: " + str(balance))
+           output("Request: " + str(requestType) + ", Outcome: " + outcome + ", From Bank: " + str(bankName) + ", ClientNumber: " + str(clientNumber) + ", SequenceNumber: " + str(sequenceNumber) + ",From AccountNumber: " + str(accountNumber) + ", Updated Balance: " + str(balance))
         else:
-           output("Request: " + str(requestType) + ", Outcome: " + outcome + ", Bank: " + bankName + ", ClientNumber: " + str(clientNumber) + ", SequenceNumber: " + str(sequenceNumber) + ", AccountNumber: " + str(accountNumber) + ", Balance: " + str(balance))
+           output("Request: " + str(requestType) + ", Outcome: " + outcome + ", Bank: " + str(bankName) + ", ClientNumber: " + str(clientNumber) + ", SequenceNumber: " + str(sequenceNumber) + ", AccountNumber: " + str(accountNumber) + ", Balance: " + str(balance))
     
     def receive(msg=(role,server), from_=master):
         if role == 'head' and self.head != server:
