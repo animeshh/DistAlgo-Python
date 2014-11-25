@@ -112,7 +112,7 @@ class Master(process):
             for index,item in enumerate(chain_exttail):
               for x in removeIndex:
                 if str(x) in str(item):
-                  print("\n\tcheck here2:.."+str(chain_exttail))
+                  #print("\n\tcheck here2:.."+str(chain_exttail))
                   break
                 else:
                   del chain_exttail[index]               
@@ -137,7 +137,7 @@ class Master(process):
         chainLength = len(servList)
         l_tail = servList[chainLength - 1] 
         chain_exttail.append(str(bankNo)+" "+str(newTail)+" "+str(l_tail))
-        print("\n\tcheck here0:.."+str(chain_exttail))
+        #print("\n\tcheck here0:.."+str(chain_exttail))
         my_sleep(bankNo,newTail)
         
     def my_sleep(bankNo,newTail):
@@ -288,7 +288,7 @@ class Server(process):
     def receive(msg=('ack',reqID), from_=next):
         if(crash != True):
           Sent[reqID] = True;
-          output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
+          #output("sending ack to remove old update: "+ str(reqID) + " from : " +str(role))
           if prev != None:
             send(('ack',reqID), to=prev)
 
