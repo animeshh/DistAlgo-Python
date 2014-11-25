@@ -1,0 +1,5 @@
+[2014-11-24 23:44:40,642]Client[('animesh-AO532h', 33056)]: 
+ Client Sending Transfer request with clientNumber: 5001 and sequenceNumber: 2
+[2014-11-24 23:44:40,768]Client[('animesh-AO532h', 33056)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 5001, SequenceNumber: 1, AccountNumber: 1001, Balance: 500.0
+[2014-11-24 23:44:50,679]Client[('animesh-AO532h', 33056)]: Client: msg received from Master: tail changed to:('animesh-AO532h', 38388)
+[2014-11-24 23:44:50,780]Client[('animesh-AO532h', 33056)]: Request: Transfer, Outcome: Processed, From Bank: 1, ClientNumber: 5001, SequenceNumber: 2,From AccountNumber: 1001, Updated Balance: 100.0

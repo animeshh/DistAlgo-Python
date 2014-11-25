@@ -1,0 +1,9 @@
+[2014-11-24 23:43:09,395]Server[('animesh-AO532h', 22985)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 35829)
+[2014-11-24 23:43:10,426]Server[('animesh-AO532h', 22985)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-24 23:43:10,438]Server[('animesh-AO532h', 34125)]: Transfer from request sent to next server from: head
+[2014-11-24 23:43:10,490]Server[('animesh-AO532h', 31158)]: Transfer from request sent to next server from: replica1
+[2014-11-24 23:43:10,510]Server[('animesh-AO532h', 22985)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-24 23:43:10,548]Server[('animesh-AO532h', 13761)]: 
+	Transfer to:server crashed after receiving req. no:1
+[2014-11-24 23:43:19,133]Server[('animesh-AO532h', 31215)]: Transfer to request sent to next server from: replica1
+[2014-11-24 23:43:19,167]Server[('animesh-AO532h', 32393)]: Transfer to request ..sending to another bank head from: tail

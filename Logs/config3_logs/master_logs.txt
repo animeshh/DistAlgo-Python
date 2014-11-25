@@ -1,0 +1,5 @@
+[2014-11-24 23:44:50,627]Master[('animesh-AO532h', 10826)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 18805)from bankNO: 1
+[2014-11-24 23:44:50,629]Master[('animesh-AO532h', 10826)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 37559)from bankNO: 2
+[2014-11-24 23:44:50,746]Master[('animesh-AO532h', 10826)]: sync next received from:('animesh-AO532h', 38388)

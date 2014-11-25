@@ -1,0 +1,7 @@
+[2014-11-24 23:45:10,255]Client[('animesh-AO532h', 17299)]: 
+ Client Sending Transfer request with clientNumber: 5001 and sequenceNumber: 2
+[2014-11-24 23:45:10,370]Client[('animesh-AO532h', 17299)]: 
+ Client Sending Transfer request with clientNumber: 5001 and sequenceNumber: 2
+[2014-11-24 23:45:10,446]Client[('animesh-AO532h', 17299)]: Request: Deposit, Outcome: Processed, Bank: BOA, ClientNumber: 5001, SequenceNumber: 1, AccountNumber: 1001, Balance: 500.0
+[2014-11-24 23:45:10,628]Client[('animesh-AO532h', 17299)]: Request: Transfer, Outcome: Processed, From Bank: 1, ClientNumber: 5001, SequenceNumber: 2,From AccountNumber: 1001, Updated Balance: 300.0
+[2014-11-24 23:45:10,849]Client[('animesh-AO532h', 17299)]: Request: Transfer, Outcome: Processed, From Bank: 2, ClientNumber: 5001, SequenceNumber: 2,From AccountNumber: 1001, Updated Balance: 200.0

@@ -1,0 +1,15 @@
+[2014-11-24 23:42:42,764]Server[('animesh-AO532h', 39077)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 22535)
+[2014-11-24 23:42:42,848]Server[('animesh-AO532h', 39077)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-24 23:42:42,854]Server[('animesh-AO532h', 30692)]: Transfer from request sent to next server from: head
+[2014-11-24 23:42:42,924]Server[('animesh-AO532h', 18821)]: Withdraw request ..sending to client from: tail
+[2014-11-24 23:42:42,964]Server[('animesh-AO532h', 19435)]: Transfer from request sent to next server from: replica1
+[2014-11-24 23:42:42,971]Server[('animesh-AO532h', 35562)]: deposit to existing accno
+[2014-11-24 23:42:43,000]Server[('animesh-AO532h', 39077)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-24 23:42:43,012]Server[('animesh-AO532h', 18821)]: sending ack to remove old update: 7001|1|9001 from : tail
+[2014-11-24 23:42:43,040]Server[('animesh-AO532h', 26437)]: deposit to existing accno
+[2014-11-24 23:42:43,112]Server[('animesh-AO532h', 18821)]: deposit to existing accno
+[2014-11-24 23:42:43,113]Server[('animesh-AO532h', 18821)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 16830)
+[2014-11-24 23:42:43,110]Server[('animesh-AO532h', 35562)]: Transfer to request sent to next server from: head
+[2014-11-24 23:42:43,146]Server[('animesh-AO532h', 18821)]: sending ack to remove old update: 7001|2|9001 from:tail
+[2014-11-24 23:42:43,247]Server[('animesh-AO532h', 26437)]: Transfer to request sent to next server from: replica1
+[2014-11-24 23:42:43,296]Server[('animesh-AO532h', 18821)]: Transfer to request ..sending to another bank head from: tail

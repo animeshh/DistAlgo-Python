@@ -1,0 +1,13 @@
+[2014-11-24 23:44:40,710]Server[('animesh-AO532h', 27232)]: Transfer from request sent to next server from: head
+[2014-11-24 23:44:40,723]Server[('animesh-AO532h', 38388)]: Transfer from request sent to next server from: replica1
+[2014-11-24 23:44:40,751]Server[('animesh-AO532h', 18805)]: Deposit processed ..sending to client, from: tail to client: ('animesh-AO532h', 33056)
+[2014-11-24 23:44:40,776]Server[('animesh-AO532h', 18805)]: sending ack to remove old update: 5001|1|1001 from:tail
+[2014-11-24 23:44:40,824]Server[('animesh-AO532h', 18805)]: Transfer to request ..sending to another bank head from: tail
+[2014-11-24 23:44:40,833]Server[('animesh-AO532h', 18805)]: 
+	Transfer from:server crashed just after sending req. no:2
+[2014-11-24 23:44:40,889]Server[('animesh-AO532h', 37559)]: 
+	Transfer to:server crashed after receiving req. no:1
+[2014-11-24 23:44:50,651]Server[('animesh-AO532h', 38388)]: 
+ inside sync_next:5001|2|1001
+
+[2014-11-24 23:44:50,767]Server[('animesh-AO532h', 38388)]: Duplicate Transfer request sending same reply...

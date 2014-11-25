@@ -1,0 +1,3 @@
+[2014-11-24 23:43:19,011]Master[('animesh-AO532h', 21333)]: 
+Master:identified crashed server now as: ('animesh-AO532h', 13761)from bankNO: 2
+[2014-11-24 23:43:19,029]Master[('animesh-AO532h', 21333)]: replica1
